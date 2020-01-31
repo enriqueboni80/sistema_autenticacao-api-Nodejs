@@ -1,5 +1,6 @@
 const knex = require('knex')
 const knexConfigs = require('../../knexfile')
+var util = require('../../Helpers/Util')
 const db = knex(knexConfigs.development)
 
 const TABLE_NAME = 'users'
@@ -19,6 +20,7 @@ module.exports = {
             .where('id', id)
             .update({
                 active: true,
+                updated_at: util.getNow()
             })
     },
     resetToken(id) {
