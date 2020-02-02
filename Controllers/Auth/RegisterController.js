@@ -1,7 +1,7 @@
 const User = require('../../Store/Auth/Register');
 var bcrypt = require('bcryptjs');
 var util = require('../../Helpers/Util')
-
+var registerEvent = require('../../Events/RegisterEvent')
 
 function gerarHash(password) {
     var hash = bcrypt.hashSync(password, 8);
@@ -11,7 +11,6 @@ function gerarHash(password) {
 function gerarToken() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
-
 
 module.exports = {
     showRegistrationForm(req, res, next) {
@@ -26,6 +25,7 @@ module.exports = {
             created_at: util.getNow()
         }
         User.register(user).then((result) => {
+            registerEvent()
             res.json({ success: true, message: 'ok' });
         })
     },
@@ -41,5 +41,8 @@ module.exports = {
                 console.log('usuario ou token não localizados')
             }
         })
+    },
+    enviarEmail(req, res) {
+        registerEvent()
     }
 }
