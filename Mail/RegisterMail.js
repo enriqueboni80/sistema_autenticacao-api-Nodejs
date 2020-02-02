@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-var sendEmail = require('./sendMail')
+var sendEmail = require('./app/sendMail')
 require('dotenv').config()
 
 module.exports = () => {
