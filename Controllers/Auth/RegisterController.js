@@ -25,7 +25,8 @@ module.exports = {
             created_at: util.getNow()
         }
         User.register(user).then((result) => {
-            registerEvent()
+            user.id = result
+            registerEvent(user)
             res.json({ success: true, message: 'ok' });
         })
     },
@@ -37,12 +38,19 @@ module.exports = {
                 console.log('usuario e token encontrados')
                 User.active(result.id).then(() => { })
                 User.resetToken(result.id).then(() => { })
+                res.send('Email Validado! Agora é meter bronca!')
             } else {
                 console.log('usuario ou token não localizados')
             }
         })
     },
     enviarEmail(req, res) {
-        registerEvent()
+        user = {
+            'id': '25',
+            'nome': 'Enrique Santos',
+            'email': 'enriqueboni80@hotmail.com',
+            'token': 'dfasdfadfadfadf'
+        }
+        registerEvent(user)
     }
 }

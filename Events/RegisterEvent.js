@@ -1,5 +1,5 @@
 var registerMail = require('../Mail/RegisterMail')
 
-module.exports = () => {
-    registerMail()
+module.exports = (user) => {
+    registerMail(user)
 }

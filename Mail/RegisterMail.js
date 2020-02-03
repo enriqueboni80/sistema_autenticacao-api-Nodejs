@@ -2,16 +2,18 @@ var nodemailer = require('nodemailer');
 var sendEmail = require('./app/sendMail')
 require('dotenv').config()
 
-module.exports = () => {
-        
-    var mailOptions = {
-            from: process.env.MAIL_FROM_NAME,
-            to: 'enriqueboni80@hotmail.com',
-            subject: 'Email de Cadastro',
-            text: 'Bem Vindo ao Sistema',
-            template: 'register-mail'
-        };
+module.exports = (user) => {
 
-        sendEmail(mailOptions)
-    
+    var mailOptions = {
+        from: process.env.MAIL_FROM_NAME,
+        to: user.email,
+        subject: 'Email de Cadastro',
+        text: 'Bem Vindo ao Sistema',
+        template: 'register-mail',
+        context: {
+            username: user.nome,
+            link_ativacao: `${process.env.APP_URL}/register/active/${user.id}/${user.token}`
+        }
+    };
+    sendEmail(mailOptions)
 }
