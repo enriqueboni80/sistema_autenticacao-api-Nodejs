@@ -8,7 +8,8 @@ module.exports = () => {
             from: process.env.MAIL_FROM_NAME,
             to: 'enriqueboni80@hotmail.com',
             subject: 'Email de Cadastro',
-            text: 'Bem Vindo ao Sistema'
+            text: 'Bem Vindo ao Sistema',
+            template: 'register-mail'
         };
 
         sendEmail(mailOptions)

@@ -1,4 +1,6 @@
 var nodemailer = require('nodemailer');
+var hbs = require('nodemailer-express-handlebars')
+var path = require('path')
 require('dotenv').config()
 
 module.exports = (mailOptions) => {
@@ -10,6 +12,16 @@ module.exports = (mailOptions) => {
             pass: process.env.MAIL_PASSWORD
         }
     });
+
+    transporter.use('compile', hbs({
+        viewEngine: {
+            partialsDir: path.resolve('./views/mail_templates/'),
+            layoutsDir: path.resolve('./views/mail_templates/'),
+            defaultLayout: `${mailOptions.template}.hbs`
+        },
+        viewPath: path.resolve('./views/mail_templates/'),
+        extName: '.hbs'
+    }))
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
