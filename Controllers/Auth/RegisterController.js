@@ -1,7 +1,7 @@
-const User = require('../../Store/Auth/Register');
+const User = require('../../store/Auth/Register');
 var bcrypt = require('bcryptjs');
-var util = require('../../Helpers/Util')
-var registerEvent = require('../../Events/RegisterEvent')
+var util = require('../../helpers/Util')
+var registerEvent = require('../../events/RegisterEvent')
 
 function gerarHash(password) {
     var hash = bcrypt.hashSync(password, 8);

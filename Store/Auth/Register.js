@@ -1,6 +1,6 @@
 const knex = require('knex')
 const knexConfigs = require('../../knexfile')
-var util = require('../../Helpers/Util')
+var util = require('../../helpers/Util')
 const db = knex(knexConfigs.development)
 
 const TABLE_NAME = 'users'
