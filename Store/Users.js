@@ -1,5 +1,6 @@
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
+var util = require('../helpers/Util')
 const db = knex(knexConfigs.development)
 
 const TABLE_NAME = 'users'
@@ -12,12 +13,43 @@ module.exports = {
         return db(TABLE_NAME).where('id', id)
     },
     getByEmail(email) {
-        return db(TABLE_NAME).where('email', email)
+        return db(TABLE_NAME).where('email', email).first()
+    },
+    getByToken(id, token) {
+        return db(TABLE_NAME)
+            .where('id', id)
+            .where('token', token)
+            .first()
     },
     auth(email, password) {
         return db(TABLE_NAME).where({
             email: email,
             password: password
         })
+    },
+    register(user) {
+        return db(TABLE_NAME).insert(user);
+    },
+    active(id) {
+        return db(TABLE_NAME)
+            .where('id', id)
+            .update({
+                active: true,
+                updated_at: util.getNow()
+            })
+    },
+    resetToken(id) {
+        return db(TABLE_NAME)
+            .where('id', id)
+            .update({
+                token: null,
+            })
+    },
+    updatePassword(userID, newPassword){
+        return db(TABLE_NAME)
+            .where('id', userID)
+            .update({
+                password: newPassword,
+            })
     }
 }
