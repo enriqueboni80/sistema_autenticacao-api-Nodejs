@@ -24,8 +24,8 @@ module.exports = {
     },
     auth(email, password) {  
         return db(TABLE_NAME).where({
-            email: 'enriqueboni80@gmail.com',
-            password: '$2a$08$tUE7kUJShLZ55ih9b2tg0edicBwLjn57lQwt1.jeJFIrQj0gKz9pk'
+            email: '',
+            password: ''
         }).first()
     },
     register(user) {
