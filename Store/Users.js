@@ -1,6 +1,5 @@
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
-var bcrypt = require('bcryptjs');
 var util = require('../helpers/Util')
 const db = knex(knexConfigs.development)
 
@@ -22,10 +21,11 @@ module.exports = {
             .where('token', token)
             .first()
     },
-    auth(email, password) {  
+    auth(email, password) {
+        //função desabilitada - erro com bycript (Ver em configs/local.strategy) 
         return db(TABLE_NAME).where({
-            email: '',
-            password: ''
+            email: email,
+            password: password
         }).first()
     },
     register(user) {
@@ -52,5 +52,5 @@ module.exports = {
             .update({
                 password: newPassword,
             })
-    }
+    },
 }

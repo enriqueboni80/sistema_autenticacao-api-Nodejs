@@ -10,5 +10,8 @@ module.exports = {
     },
     gerarToken() {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    },
+    compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {
+        return bcrypt.compareSync(passwordDigitado, passwordDoBanco)
     }
 }
