@@ -5,7 +5,7 @@ var ForgotPasswordController = require('../../controllers/Auth/ForgotPasswordCon
 /* GET home page. */
 router.get('/', ForgotPasswordController.showLinkRequestForm);
 router.post('/', ForgotPasswordController.sendResetLinkEmail);
-router.get('/:id/:token/form/', ForgotPasswordController.sendResetLinkResponse)
+router.get('/:id/forgot/:token/', ForgotPasswordController.sendResetLinkResponse)
 router.post('/reset/', ForgotPasswordController.resetPassword)
 
 

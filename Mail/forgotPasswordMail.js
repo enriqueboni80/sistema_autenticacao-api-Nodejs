@@ -12,7 +12,7 @@ module.exports = (user) => {
         template: 'forgotPassword-mail',
         context: {
             username: user.nome,
-            link_ativacao: `${process.env.APP_URL}/forgot-password/${user.id}/${user.token}/form/`
+            link_ativacao: `${process.env.APP_URL}/forgot-password/${user.id}/forgot/${user.token}`
         }
     };
     sendEmail(mailOptions)

@@ -1,5 +1,6 @@
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
+var bcrypt = require('bcryptjs');
 var util = require('../helpers/Util')
 const db = knex(knexConfigs.development)
 
@@ -21,11 +22,11 @@ module.exports = {
             .where('token', token)
             .first()
     },
-    auth(email, password) {
+    auth(email, password) {  
         return db(TABLE_NAME).where({
-            email: email,
-            password: password
-        })
+            email: 'enriqueboni80@gmail.com',
+            password: '$2a$08$tUE7kUJShLZ55ih9b2tg0edicBwLjn57lQwt1.jeJFIrQj0gKz9pk'
+        }).first()
     },
     register(user) {
         return db(TABLE_NAME).insert(user);

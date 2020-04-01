@@ -12,7 +12,7 @@ module.exports = (user) => {
         template: 'register-mail',
         context: {
             username: user.nome,
-            link_ativacao: `${process.env.APP_URL}/register/${user.id}/${user.token}/active/`
+            link_ativacao: `${process.env.APP_URL}/register/${user.id}/active/${user.token}`
         }
     };
     sendEmail(mailOptions)
