@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/Auth/register');
 var forgotRouter = require('./routes/Auth/forgotPassword');
 var loginRouter = require('./routes/Auth/login');
+var logoutRouter = require('./routes/Auth/logout');
 
 var app = express();
 require('./configs/local.strategy');
@@ -34,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/register', registerRouter);
 app.use('/forgot-password', forgotRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
