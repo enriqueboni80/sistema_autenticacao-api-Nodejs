@@ -5,6 +5,7 @@ var auth = require('../middlewares/ensureAuthenticated')
 
 /* HOME PAGE ROUTES. */
 router.get('/', IndexController.index);
-router.get('/home', auth.ensureAuthenticated, IndexController.home);
+router.get('/admin', auth.ensureAuthenticated(), IndexController.admin);
+router.get('/home', auth.ensureAuthenticated(['admins', 'usuarios']), IndexController.home);
 
 module.exports = router;
