@@ -10,20 +10,18 @@ passport.use(new LocalStrategy({
     function (email, password, done) {
         User.getByEmail(email).then((user) => {
             if (!user) {
-                console.log("usuario nao encontrado")
-                return done(null, false, { message: 'email is incorrect' });
+                return done(null, false, { message: "usuario nao encontrado" });
             } else {
                 var passwordsSaoIguais = Util.compararPasswordsBycrypt(password, user.password)
                 if (passwordsSaoIguais) {
                     if (!user.active) {
-                        console.log("usuario ainda não ativado")
-                        return done(null, false, { message: 'usuario nao ativado' });
+                        return done(null, false, { message: "usuario ainda não ativado" });
                     } else {
-                        return done(null, user);
+                        return done(null, user, { message: "Autenticou" });
                     }
                 }
                 else {
-                    return done(null, false, { message: 'Password is incorrect' });
+                    return done(null, false, { message: "usuario ainda não ativado" });
                 }
             }
         })

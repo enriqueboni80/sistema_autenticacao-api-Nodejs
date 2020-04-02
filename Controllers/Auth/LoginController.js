@@ -11,14 +11,15 @@ module.exports = {
                 return next(err);
             }
             if (!user) {
-                console.log('Erro ao autenticar')
+                console.log(info.message)
                 return res.redirect('/login');
             }
             req.logIn(user, function (err) {
                 if (err) {
+                    console(info.message)
                     return next(err);
                 }
-                console.log('autenticou')
+                console.log(info.message)
                 return res.redirect('/home');
             });
         })(req, res, next);
