@@ -1,5 +1,3 @@
-var express = require('express');
-var router = express.Router();
 var passport = require('passport')
 
 module.exports = {
@@ -7,6 +5,7 @@ module.exports = {
         res.send("montar formulario de login");
     },
     autenticar(req, res, next) {
+        //Passport é gerenciado dentro do ./configs/local.strategy
         passport.authenticate('local', function (err, user, info) {
             if (err) {
                 return next(err);

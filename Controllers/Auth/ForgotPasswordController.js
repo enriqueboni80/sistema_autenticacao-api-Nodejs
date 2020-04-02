@@ -1,5 +1,4 @@
 const User = require('../../store/Users');
-var bcrypt = require('bcryptjs');
 var util = require('../../helpers/Util')
 var forgotPasswordEvent = require('../../events/forgotPasswordEvent')
 
