@@ -7,5 +7,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('grupos_suarios')
+    return knex.schema.dropTableIfExists('grupos_usuarios')
 };
