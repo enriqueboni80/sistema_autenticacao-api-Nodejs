@@ -10,7 +10,6 @@ passport.use(new LocalStrategy({
 },
     function (email, password, done) {
         User.getByEmail(email).then((user) => {
-            console.log()
             if (!user) {
                 return done(null, false, { message: "usuario nao encontrado" });
             } else {
@@ -37,10 +36,6 @@ passport.use(new LocalStrategy({
         })
     }
 ));
-
-const teste = () => {
-    console.log('chegou aqui')
-}
 
 passport.serializeUser(function (user, done) {
     done(undefined, user);
