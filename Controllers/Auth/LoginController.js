@@ -19,6 +19,7 @@ module.exports = {
                     console(info.message)
                     return next(err);
                 }
+                console.log(user)
                 console.log(info.message)
                 return res.redirect('/home');
             });

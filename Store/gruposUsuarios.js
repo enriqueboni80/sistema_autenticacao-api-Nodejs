@@ -3,7 +3,7 @@ const knexConfigs = require('../knexfile')
 var util = require('../helpers/Util')
 const db = knex(knexConfigs.development)
 
-const TABLE_NAME = 'gruposUsuarios'
+const TABLE_NAME = 'grupos_usuarios'
 
 module.exports = {
     getGroupsById(idUsuario) {
