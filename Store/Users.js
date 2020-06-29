@@ -1,6 +1,7 @@
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
-var util = require('../helpers/Util')
+const util = require('../helpers/Util')
+const bcrypt = require('bcryptjs');
 const db = knex(knexConfigs.development)
 
 const TABLE_NAME = 'users'
@@ -53,4 +54,7 @@ module.exports = {
                 password: newPassword,
             })
     },
+    compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {
+        return bcrypt.compareSync(passwordDigitado, passwordDoBanco)
+    }
 }

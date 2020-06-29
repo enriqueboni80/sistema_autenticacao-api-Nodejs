@@ -1,7 +1,6 @@
 var User = require("../store/Users")
 var gruposUsuarios = require("../store/GruposUsuarios")
 const passport = require("passport");
-var Util = require("../helpers/Util")
 const LocalStrategy = require("passport-local").Strategy;
 
 passport.use(new LocalStrategy({
@@ -13,7 +12,7 @@ passport.use(new LocalStrategy({
             if (!user) {
                 return done(null, false, { message: "usuario nao encontrado" });
             } else {
-                var passwordsSaoIguais = Util.compararPasswordsBycrypt(password, user.password)
+                var passwordsSaoIguais = User.compararPasswordsBycrypt(password, user.password)
                 if (passwordsSaoIguais) {
                     if (!user.active) {
                         return done(null, false, { message: "usuario ainda não ativado" });
