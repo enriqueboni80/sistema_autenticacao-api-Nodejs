@@ -1,28 +1,20 @@
 exports.ensureAuthenticated = (roles = null) => {
     return function (req, res, next) {
         if (req.isAuthenticated()) {
-            // req.user is available for use here
+            var grupos = req.user.grupos
             var podeContinuar = false
             if (!roles) {
                 podeContinuar = true
             } else {
-                roles.map((role) => {
-                    switch (role) {
-                        case 'admins':
+                grupos.forEach(grupo => {
+                    roles.map((role) => {
+                        if(grupo === role){
                             podeContinuar = true
-                            break;
-                        case 'usuarios':
-                            podeContinuar = true
-                            break;
-                        default:
-                            podeContinuar = false
-                            break;
-                    }
-                })
+                        }
+                    })
+                });
             }
-            
             podeContinuar ? next() : res.send('não tem permissao para acessar essa rota')
-
         } else {
             console.log('não autenticado')
             res.redirect('/login')
