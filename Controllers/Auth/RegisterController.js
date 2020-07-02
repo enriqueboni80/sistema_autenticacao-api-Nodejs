@@ -32,14 +32,5 @@ module.exports = {
                 console.log('usuario ou token não localizados')
             }
         })
-    },
-    enviarEmail(req, res) {
-        user = {
-            'id': '25',
-            'nome': 'Enrique Santos',
-            'email': 'enriqueboni80@hotmail.com',
-            'token': 'dfasdfadfadfadf'
-        }
-        registerEvent(user)
     }
 }

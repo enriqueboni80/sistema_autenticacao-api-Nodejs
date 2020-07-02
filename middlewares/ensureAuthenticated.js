@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
 exports.ensureAuthenticated = (roles = null) => {
     return function (req, res, next) {
         try {
             const token = req.headers.authorization.split(' ')[1]
-            const decode = jwt.verify(token, 'SENHA_PRIVADA')
+            const decode = jwt.verify(token, process.env.JWT_KEY)
             req.usuario = decode;
             var grupos = decode.grupos
             var podeContinuar = false

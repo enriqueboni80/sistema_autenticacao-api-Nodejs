@@ -22,13 +22,6 @@ module.exports = {
             .where('token', token)
             .first()
     },
-    auth(email, password) {
-        //função desabilitada - erro com bycript (Ver em configs/local.strategy) 
-        return db(TABLE_NAME).where({
-            email: email,
-            password: password
-        }).first()
-    },
     register(user) {
         return db(TABLE_NAME).insert(user);
     },

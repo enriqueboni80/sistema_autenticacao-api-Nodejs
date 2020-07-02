@@ -2,6 +2,7 @@ var passport = require('passport')
 var User = require("../../service/Users")
 var gruposUsuarios = require("../../service/GruposUsuarios")
 var jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 module.exports = {
     index(req, res, next) {
@@ -30,7 +31,7 @@ module.exports = {
                                 id: user.id,
                                 email: user.email,
                                 grupos: user.grupos
-                            }, 'SENHA_PRIVADA', {
+                            }, process.env.JWT_KEY, {
                                 expiresIn: "1h"
                             })
                             return res.status(200).send({
