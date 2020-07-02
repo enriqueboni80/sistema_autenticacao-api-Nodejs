@@ -11,7 +11,7 @@ module.exports = {
             nome: req.body.nome,
             email: req.body.email,
             password: util.gerarHash(req.body.password),
-            token: util.gerarToken(),
+            token: util.gerarActivationToken(),
             created_at: util.getNow()
         }
         User.register(user).then((result) => {
@@ -22,12 +22,14 @@ module.exports = {
     },
     active(req, res) {
         let id = req.params.id
-        let token = req.params.token
-        User.getByToken(id, token).then((result) => {
-            if (result) {
+        let activactionToken = req.params.activactiontoken
+        User.getByToken(id, activactionToken).then((user) => {
+            if (user) {
                 console.log('usuario e token encontrados')
-                User.active(result.id).then(() => { })
-                res.send('Email Validado! Agora é meter bronca!')
+                User.active(user.id).then(() => { 
+                    /* User.resetToken(user.id).then(()=>{}) */
+                    res.send('Email Validado! Agora é meter bronca!')
+                })
             } else {
                 console.log('usuario ou token não localizados')
             }

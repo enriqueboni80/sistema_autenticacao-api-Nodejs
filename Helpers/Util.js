@@ -9,7 +9,7 @@ module.exports = {
         var hash = bcrypt.hashSync(password, 8);
         return hash
     },
-    gerarToken() {
+    gerarActivationToken() {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     }
 }

@@ -10,23 +10,26 @@ module.exports = {
     sendResetLinkEmail(req, res, next) {
         email = req.body.email
         User.getByEmail(email).then((user) => {
+            user.token = util.gerarActivationToken()
+            /* User.setNewToken(user.id, user.token).then(() => {}) */
             forgotPasswordEvent(user)
         })
     },
-    sendResetLinkResponse(req, res, next){
+    sendResetLinkResponse(req, res, next) {
         let id = req.params.id
-        let token = req.params.token
-        res.send(`Abrir formulario para trocar a senha com ${id} e ${token}`)
+        let activationToken = req.params.activactiontoken
+        res.send(`Abrir formulario para trocar a senha com ${id} e ${activationToken}`)
     },
     resetPassword(req, res) {
         let id = req.body.id
-        let token = req.body.token
-        User.getByToken(id, token).then((user) => {
+        let activationToken = req.body.activactiontoken
+        User.getByToken(id, activationToken).then((user) => {
             if (user) {
                 console.log('usuario e token encontrados')
                 let newPassword = util.gerarHash(req.body.newPassword)
-                User.updatePassword(user.id, newPassword)
-                console.log('senha atualizada')
+                User.updatePassword(user.id, newPassword).then(() => {
+                    console.log('senha atualizada')
+                })
             } else {
                 console.log('usuario ou token não localizados')
             }

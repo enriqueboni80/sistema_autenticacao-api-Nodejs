@@ -2,6 +2,7 @@ const knex = require('knex')
 const knexConfigs = require('../knexfile')
 const util = require('../helpers/Util')
 const bcrypt = require('bcryptjs');
+const Util = require('../helpers/Util');
 const db = knex(knexConfigs.development)
 
 const TABLE_NAME = 'users'
@@ -22,6 +23,11 @@ module.exports = {
             .where('token', token)
             .first()
     },
+    async setNewToken(id, newToken) {
+        return await db(TABLE_NAME)
+        .where('id', id)
+        .update('token', newToken)
+    },
     register(user) {
         return db(TABLE_NAME).insert(user);
     },
@@ -40,11 +46,13 @@ module.exports = {
                 token: null,
             })
     },
-    updatePassword(userID, newPassword){
+    updatePassword(userID, newPassword) {
+        console.log(userID, newPassword)
         return db(TABLE_NAME)
             .where('id', userID)
             .update({
                 password: newPassword,
+                updated_at: util.getNow()
             })
     },
     compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {

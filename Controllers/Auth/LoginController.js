@@ -42,7 +42,7 @@ module.exports = {
                     }
                 }
                 else {
-                    return res.state(401).send('FALHA NA AUTENTICACAO')
+                    return res.status(401).send('FALHA NA AUTENTICACAO')
                 }
             }
         })
