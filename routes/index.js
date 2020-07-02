@@ -9,5 +9,6 @@ const user = 2;
 router.get('/', IndexController.index);
 router.get('/admin', auth.ensureAuthenticated([admin]), IndexController.admin);
 router.get('/home', auth.ensureAuthenticated([admin, user]), IndexController.home);
+/* router.get('/home', IndexController.home); */
 
 module.exports = router;

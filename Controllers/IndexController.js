@@ -6,6 +6,7 @@ module.exports = {
         res.render('admin');
     },
     home(req, res, next) {
-        res.render('home');
+        res.status(200).send([{'nome': 'eventos 1'}, {'nome': 'eventos 2'}])
+        /* res.render('home'); */
     },
 }
