@@ -6,6 +6,7 @@ exports.ensureAuthenticated = (roles = null) => {
         try {
             const token = req.headers.authorization.split(' ')[1]
             const decode = jwt.verify(token, 'SENHA_PRIVADA')
+            req.usuario = decode;
             var grupos = decode.grupos
             var podeContinuar = false
             if (!roles) {
@@ -23,8 +24,5 @@ exports.ensureAuthenticated = (roles = null) => {
         } catch (error) {
             return res.status(401).send('FALHA NA VERIFICACAO')
         }
-
-
-
     }
 }
