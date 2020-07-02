@@ -10,19 +10,19 @@ module.exports = {
     sendResetLinkEmail(req, res, next) {
         email = req.body.email
         User.getByEmail(email).then((user) => {
-            user.token = util.gerarActivationToken()
+            /* user.activation_token = util.gerarActivationToken() */
             /* User.setNewToken(user.id, user.token).then(() => {}) */
             forgotPasswordEvent(user)
         })
     },
     sendResetLinkResponse(req, res, next) {
         let id = req.params.id
-        let activationToken = req.params.activactiontoken
+        let activationToken = req.params.activationtoken
         res.send(`Abrir formulario para trocar a senha com ${id} e ${activationToken}`)
     },
     resetPassword(req, res) {
         let id = req.body.id
-        let activationToken = req.body.activactiontoken
+        let activationToken = req.body.activationtoken
         User.getByToken(id, activationToken).then((user) => {
             if (user) {
                 console.log('usuario e token encontrados')

@@ -20,13 +20,13 @@ module.exports = {
     getByToken(id, token) {
         return db(TABLE_NAME)
             .where('id', id)
-            .where('token', token)
+            .where({activation_token: token})
             .first()
     },
     async setNewToken(id, newToken) {
         return await db(TABLE_NAME)
         .where('id', id)
-        .update('token', newToken)
+        .update('activation_token', newToken)
     },
     register(user) {
         return db(TABLE_NAME).insert(user);
@@ -43,11 +43,10 @@ module.exports = {
         return db(TABLE_NAME)
             .where('id', id)
             .update({
-                token: null,
+                activation_token: null,
             })
     },
     updatePassword(userID, newPassword) {
-        console.log(userID, newPassword)
         return db(TABLE_NAME)
             .where('id', userID)
             .update({
