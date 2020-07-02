@@ -1,6 +1,3 @@
-
-
-
 module.exports = {
     desAutenticar(req, res) {
         req.session.destroy();

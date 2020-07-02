@@ -1,5 +1,5 @@
-var User = require("../store/Users")
-var gruposUsuarios = require("../store/GruposUsuarios")
+var User = require("../service/Users")
+var gruposUsuarios = require("../service/GruposUsuarios")
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 

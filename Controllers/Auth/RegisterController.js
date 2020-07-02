@@ -1,4 +1,4 @@
-const User = require('../../store/Users');
+const User = require('../../service/Users');
 var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent')
 
