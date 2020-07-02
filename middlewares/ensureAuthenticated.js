@@ -1,23 +1,30 @@
+const jwt = require('jsonwebtoken')
+
+
 exports.ensureAuthenticated = (roles = null) => {
     return function (req, res, next) {
-        if (req.isAuthenticated()) {
-            var grupos = req.user.grupos
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            const decode = jwt.verify(token, 'SENHA_PRIVADA')
+            var grupos = decode.grupos
             var podeContinuar = false
             if (!roles) {
                 podeContinuar = true
             } else {
                 grupos.forEach(grupo => {
                     roles.map((role) => {
-                        if(grupo === role){
+                        if (grupo === role) {
                             podeContinuar = true
                         }
                     })
                 });
             }
-            podeContinuar ? next() : res.send('não tem permissao para acessar essa rota')
-        } else {
-            console.log('não autenticado')
-            res.redirect('/login')
+            podeContinuar ? next() : res.status(401).send('SEM PERMISSÃO PARA ESSA ROTA')
+        } catch (error) {
+            return res.status(401).send('FALHA NA VERIFICACAO')
         }
+
+
+
     }
 }

@@ -1,28 +1,49 @@
 var passport = require('passport')
+var User = require("../../service/Users")
+var gruposUsuarios = require("../../service/GruposUsuarios")
+var jwt = require('jsonwebtoken')
 
 module.exports = {
     index(req, res, next) {
         res.send("montar formulario de login");
     },
     autenticar(req, res, next) {
-        //Passport é gerenciado dentro do ./configs/local.strategy
-        passport.authenticate('local', function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
+        var email = req.body.email
+        var password = req.body.password
+        User.getByEmail(email).then((user) => {
             if (!user) {
-                console.log(info.message)
-                return res.redirect('/login');
-            }
-            req.logIn(user, function (err) {
-                if (err) {
-                    console(info.message)
-                    return next(err);
+                return res.status(401).send('FALHA NA AUTENTICACAO')
+            } else {
+                var passwordsSaoIguais = User.compararPasswordsBycrypt(password, user.password)
+                if (passwordsSaoIguais) {
+                    if (!user.active) {
+                        return res.status(401).send('USUARIO NÃO ATIVADO')
+                    } else {
+                        //ele checar aqui em quais grupos o usuario pertence - Necessário refatorar
+                        var _gruposQuePertence = []
+                        gruposUsuarios.getGroupsById(user.id).then((result) => {
+                            result.map((group) => {
+                                _gruposQuePertence.push(group.grupo_id)
+                            })
+                            user.grupos = _gruposQuePertence
+                            let _token = jwt.sign({
+                                id: user.id,
+                                email: user.email,
+                                grupos: user.grupos
+                            }, 'SENHA_PRIVADA', {
+                                expiresIn: "1h"
+                            })
+                            return res.status(200).send({
+                                mensagem: "AUTENTICADO COM SUCESSO",
+                                token: _token
+                            })
+                        })
+                    }
                 }
-                console.log(user)
-                console.log(info.message)
-                return res.redirect('/home');
-            });
-        })(req, res, next);
+                else {
+                    return res.state(401).send('FALHA NA AUTENTICACAO')
+                }
+            }
+        })
     }
 }
