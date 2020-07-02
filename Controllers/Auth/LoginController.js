@@ -27,7 +27,7 @@ module.exports = {
                                 _gruposQuePertence.push(group.grupo_id)
                             })
                             user.grupos = _gruposQuePertence
-                            let _token = jwt.sign({
+                            let _jwtToken = jwt.sign({
                                 id: user.id,
                                 email: user.email,
                                 grupos: user.grupos
@@ -36,7 +36,7 @@ module.exports = {
                             })
                             return res.status(200).send({
                                 mensagem: "AUTENTICADO COM SUCESSO",
-                                token: _token
+                                jwtToken: _jwtToken
                             })
                         })
                     }
