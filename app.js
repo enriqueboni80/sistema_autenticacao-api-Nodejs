@@ -35,13 +35,14 @@ app.use(function (req, res, next) {
 });
 
 //Ativando Rotas
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/register', registerRouter);
-app.use('/forgot-password', forgotRouter);
-app.use('/login', loginRouter);
-app.use('/logout', logoutRouter);
-app.use('/tools', toolsRouter);
+const $apiUrl = ""
+app.use(`${$apiUrl}/`, indexRouter);
+app.use(`${$apiUrl}/users`, usersRouter);
+app.use(`${$apiUrl}/register`, registerRouter);
+app.use(`${$apiUrl}/forgot-password`, forgotRouter);
+app.use(`${$apiUrl}/login`, loginRouter);
+app.use(`${$apiUrl}/logout`, logoutRouter);
+app.use(`${$apiUrl}/tools`, toolsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
