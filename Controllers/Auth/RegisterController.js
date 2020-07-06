@@ -17,21 +17,23 @@ module.exports = {
         User.register(user).then((result) => {
             user.id = result
             registerEvent(user)
-            res.json({ success: true, message: 'ok' });
+            res.json({ success: true, userId: user.id, message: 'ok' });
         })
     },
     active(req, res) {
-        let id = req.params.id
-        let activationToken = req.params.activationtoken
+        console.log('chegou aqui')
+        let id = req.body.id
+        let activationToken = req.body.activationtoken
+        console.log(id, activationToken)
+        let urlRedirect = "http://www.terra.com.br"
         User.getByToken(id, activationToken).then((user) => {
             if (user) {
                 console.log('usuario e token encontrados')
-                User.active(user.id).then(() => { 
-                    /* User.resetToken(user.id).then(()=>{}) */
-                    res.send('Email Validado! Agora é meter bronca!')
+                User.active(user.id).then(() => {
+                    res.status(200).send('Token Ativo com sucesso')
                 })
             } else {
-                console.log('usuario ou token não localizados')
+                res.status(401).send('Token não validado')
             }
         })
     }

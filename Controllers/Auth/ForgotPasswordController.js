@@ -18,7 +18,9 @@ module.exports = {
     sendResetLinkResponse(req, res, next) {
         let id = req.params.id
         let activationToken = req.params.activationtoken
-        res.send(`Abrir formulario para trocar a senha com ${id} e ${activationToken}`)
+        console.log('chegou aqui')
+        res.writeHead(301, { Location: `http://localhost:3001/login?id=${id}&token=${activationToken}`});
+        res.end();
     },
     resetPassword(req, res) {
         let id = req.body.id
