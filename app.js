@@ -4,6 +4,7 @@ var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //Cors
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -33,6 +35,12 @@ app.use(function (req, res, next) {
   app.use(cors());
   next();
 });
+
+//Body-parser
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Ativando Rotas
 const $apiUrl = ""
