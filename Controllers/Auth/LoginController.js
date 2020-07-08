@@ -32,7 +32,7 @@ module.exports = {
                                 email: user.email,
                                 grupos: user.grupos
                             }, process.env.JWT_KEY, {
-                                expiresIn: "1h"
+                                expiresIn: "9h"
                             })
                             return res.status(200).send({
                                 mensagem: "AUTENTICADO COM SUCESSO",
