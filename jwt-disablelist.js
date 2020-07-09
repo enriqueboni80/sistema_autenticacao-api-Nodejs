@@ -5,7 +5,7 @@
 */
 module.exports = {
     list: [],
-    add: function (token) {
-        this.list.push(token)
+    add: function (jwtToken) {
+        this.list.push(jwtToken)
     }
 }
