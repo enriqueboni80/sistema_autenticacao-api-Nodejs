@@ -3,11 +3,11 @@ var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent')
 
 module.exports = {
-    showRegistrationForm(req, res, next) {
+    showRegistrationForm(req, res) {
         res.send('exibir formulario de cadastro');
     },
-    register(req, res, next) {
-        user = {
+    register(req, res) {
+        let user = {
             nome: req.body.nome,
             email: req.body.email,
             password: util.gerarHash(req.body.password),
@@ -25,7 +25,6 @@ module.exports = {
         let id = req.body.id
         let activationToken = req.body.activationtoken
         console.log(id, activationToken)
-        let urlRedirect = "http://www.terra.com.br"
         User.getByToken(id, activationToken).then((user) => {
             if (user) {
                 console.log('usuario e token encontrados')
