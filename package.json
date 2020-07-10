@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "lint": "node_modules/.bin/eslint ./controllers/** "
+    "lint": "eslint ./controllers/**",
+    "test": "jest",
+    "secure-mode": "jest --watchAll --verbose=true"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -28,6 +30,8 @@
   },
   "devDependencies": {
     "eslint": "^7.4.0",
-    "nodemon": "^2.0.2"
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }

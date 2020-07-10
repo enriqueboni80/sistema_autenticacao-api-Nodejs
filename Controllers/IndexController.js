@@ -1,6 +1,7 @@
 module.exports = {
     index(req, res, next) {
         res.render('index', { title: 'Express' });
+        res.status(200).send('funcionando')
     },
     admin(req, res, next) {
         res.render('admin');
