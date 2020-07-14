@@ -18,13 +18,12 @@ module.exports = {
         let activationToken = req.body.activationtoken
         User.getByToken(id, activationToken).then((user) => {
             if (user) {
-                console.log('usuario e token encontrados')
                 let newPassword = util.gerarHash(req.body.password)
                 User.updatePassword(user.id, newPassword).then(() => {
                     res.status(200).json({ success: true, message: 'ok' });
                 })
             } else {
-                console.log('usuario ou token não localizados')
+                res.status(401).json({ success: false, message: 'Algum erro aconteceu' });
             }
         })
     }
