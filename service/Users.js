@@ -12,7 +12,7 @@ module.exports = {
         return db(TABLE_NAME).select('*')
     },
     getByID(id) {
-        return db(TABLE_NAME).where('id', id)
+        return db(TABLE_NAME).where('id', id).first()
     },
     getByEmail(email) {
         return db(TABLE_NAME).where('email', email).first()
@@ -29,7 +29,14 @@ module.exports = {
         .update('activation_token', newToken)
     },
     register(user) {
-        return db(TABLE_NAME).insert(user);
+        let _user = {
+            nome: user.nome,
+            email: user.email,
+            password: util.gerarHash(user.password),
+            activation_token: util.gerarActivationToken(),
+            created_at: util.getNow()
+        }
+        return db(TABLE_NAME).insert(_user);
     },
     active(id) {
         return db(TABLE_NAME)

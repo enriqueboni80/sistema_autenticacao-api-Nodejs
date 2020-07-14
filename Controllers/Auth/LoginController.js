@@ -5,9 +5,6 @@ var jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 module.exports = {
-    index(req, res, next) {
-        res.send("montar formulario de login");
-    },
     autenticar(req, res, next) {
         var email = req.body.email
         var password = req.body.password
@@ -35,6 +32,7 @@ module.exports = {
                                 expiresIn: "9h"
                             })
                             return res.status(200).send({
+                                success: true,
                                 mensagem: "AUTENTICADO COM SUCESSO",
                                 jwtToken: _jwtToken
                             })

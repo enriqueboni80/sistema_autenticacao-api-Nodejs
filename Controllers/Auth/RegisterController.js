@@ -3,36 +3,26 @@ var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent')
 
 module.exports = {
-    showRegistrationForm(req, res) {
-        res.send('exibir formulario de cadastro');
-    },
-    register(req, res) {
-        let user = {
-            nome: req.body.nome,
-            email: req.body.email,
-            password: util.gerarHash(req.body.password),
-            activation_token: util.gerarActivationToken(),
-            created_at: util.getNow()
-        }
-        User.register(user).then((result) => {
-            user.id = result
+    async register(req, res) {
+        let user_id = await User.register(req.body)
+        let user = await User.getByID(user_id)
+        if (user) {
             registerEvent(user)
-            res.json({ success: true, userId: user.id, message: 'ok' });
-        })
+            res.status(201).json({ success: true, userId: user.id, message: 'ok' });
+        } else {
+            res.status(401).json({ success: false, message: 'Erro na criação do usuario' })
+        }
     },
     active(req, res) {
-        console.log('chegou aqui')
         let id = req.body.id
         let activationToken = req.body.activationtoken
-        console.log(id, activationToken)
         User.getByToken(id, activationToken).then((user) => {
             if (user) {
-                console.log('usuario e token encontrados')
                 User.active(user.id).then(() => {
-                    res.status(200).send('Token Ativo com sucesso')
+                    res.status(200).json({ success: true, message: 'Token Validado' })
                 })
             } else {
-                res.status(401).send('Token não validado')
+                res.status(401).json({ success: false, message: 'Token nao validado' })
             }
         })
     }
