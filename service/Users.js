@@ -20,15 +20,25 @@ module.exports = {
     getByToken(id, token) {
         return db(TABLE_NAME)
             .where('id', id)
-            .where({activation_token: token})
+            .where({ activation_token: token })
             .first()
     },
     async setNewToken(id, newToken) {
         return await db(TABLE_NAME)
-        .where('id', id)
-        .update('activation_token', newToken)
+            .where('id', id)
+            .update('activation_token', newToken)
     },
-    register(user) {
+    async register(user) {
+        
+        if (user.nome === undefined || user.nome === '') return { error: "Nome é um atributo obrigatório" }
+        if (user.email === undefined || user.email === '') return { error: "Email é um atributo obrigatório" }
+        if (user.password === undefined || user.password === '') return { error: "Password é um atributo obrigatório" }
+
+        let existEmail = await this.getByEmail(user.email)
+        if (existEmail) {
+            return { error: "Já existe um usuário com esse email" }
+        }
+
         let _user = {
             nome: user.nome,
             email: user.email,
@@ -36,6 +46,7 @@ module.exports = {
             activation_token: util.gerarActivationToken(),
             created_at: util.getNow()
         }
+        
         return db(TABLE_NAME).insert(_user);
     },
     active(id) {

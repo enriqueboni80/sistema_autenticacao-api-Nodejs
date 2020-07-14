@@ -1,18 +1,27 @@
 const User = require('../../service/Users');
 var util = require('../../helpers/Util')
-var registerEvent = require('../../events/RegisterEvent')
+var registerEvent = require('../../events/RegisterEvent');
+const { restart } = require('nodemon');
 
 module.exports = {
     async register(req, res) {
-        let user_id = await User.register(req.body)
-        let user = await User.getByID(user_id)
-        if (user) {
-            registerEvent(user)
-            res.status(201).json({ success: true, userId: user.id, message: 'ok' });
+
+        let result = await User.register(req.body)
+
+        if (!result.error) {
+            let user_id = result
+            let user = await User.getByID(user_id)
+            if (user) {
+                registerEvent(user)
+                return res.status(201).json({ success: true, userId: user.id, message: 'ok' });
+            } else {
+                return res.status(401).json({ success: false, message: 'Erro na criação do usuario' })
+            }
         } else {
-            res.status(401).json({ success: false, message: 'Erro na criação do usuario' })
+            return res.status(400).json(result)
         }
     },
+    
     active(req, res) {
         let id = req.body.id
         let activationToken = req.body.activationtoken
