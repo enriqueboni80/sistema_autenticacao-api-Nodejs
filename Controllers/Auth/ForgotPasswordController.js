@@ -4,14 +4,16 @@ var forgotPasswordEvent = require('../../events/forgotPasswordEvent')
 
 
 module.exports = {
-    sendResetLinkEmail(req, res, next) {
-        email = req.body.email
-        User.getByEmail(email).then((user) => {
+    async sendResetLinkEmail(req, res, next) {
+        try {
+            let user = await User.getByEmail(req.body.email)
             /* user.activation_token = util.gerarActivationToken() */
             /* User.setNewToken(user.id, user.token).then(() => {}) */
             forgotPasswordEvent(user)
             res.status(200).json({ success: true, userId: user.id, message: 'ok' });
-        })
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     },
     async resetPassword(req, res) {
         try {

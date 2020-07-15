@@ -17,6 +17,7 @@ module.exports = {
     },
 
     getByEmail(email) {
+        if (email === undefined || email === '') throw new Error("Falta receber o email")
         return db(TABLE_NAME).where('email', email).first()
     },
 
