@@ -12,7 +12,7 @@ test('testando registro de usuario', async () => {
         })
 });
 
-test('Ativando o token do usuario', async () => {
+test('Ativando usuario através do activationToken', async () => {
     let user_id = await serviceUser.register({ 'nome': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
     let user = await serviceUser.getByID(user_id)
     return request(app).post('/register/active')
@@ -20,6 +20,28 @@ test('Ativando o token do usuario', async () => {
         .then((res) => {
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('success', true)
+        })
+});
+
+test('Ativando usuario através do activationToken : Faltando ID', async () => {
+    let user_id = await serviceUser.register({ 'nome': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByID(user_id)
+    return request(app).post('/register/active')
+        .send({ 'activationtoken': user.activation_token })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('Falta o ID do usuario')
+        })
+});
+
+test('Ativando usuario através do activationToken : Faltando activationToken', async () => {
+    let user_id = await serviceUser.register({ 'nome': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByID(user_id)
+    return request(app).post('/register/active')
+        .send({ 'id': user.id })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('Falta o activation token')
         })
 });
 

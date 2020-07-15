@@ -13,18 +13,15 @@ module.exports = {
             res.status(200).json({ success: true, userId: user.id, message: 'ok' });
         })
     },
-    resetPassword(req, res) {
-        let id = req.body.id
-        let activationToken = req.body.activationtoken
-        User.getByToken(id, activationToken).then((user) => {
-            if (user) {
-                let newPassword = util.gerarHash(req.body.password)
-                User.updatePassword(user.id, newPassword).then(() => {
-                    res.status(200).json({ success: true, message: 'ok' });
-                })
-            } else {
-                res.status(401).json({ success: false, message: 'Algum erro aconteceu' });
-            }
-        })
+    async resetPassword(req, res) {
+        try {
+            let user = await User.getByToken(req.body)
+            let newPassword = util.gerarHash(req.body.password)
+            await User.updatePassword(user.id, newPassword)
+            await User.active(user.id)
+            res.status(200).json({ success: true, message: 'ok' });
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     }
 }

@@ -5,34 +5,24 @@ const { restart } = require('nodemon');
 
 module.exports = {
     async register(req, res) {
-
-        let result = await User.register(req.body)
-
-        if (!result.error) {
+        try {
+            let result = await User.register(req.body)
             let user_id = result
             let user = await User.getByID(user_id)
-            if (user) {
-                registerEvent(user)
-                return res.status(201).json({ success: true, userId: user.id, message: 'ok' });
-            } else {
-                return res.status(401).json({ success: false, message: 'Erro na criação do usuario' })
-            }
-        } else {
-            return res.status(400).json(result)
+            registerEvent(user)
+            return res.status(201).json({ success: true, userId: user.id, message: 'ok' });
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
         }
     },
-    
-    active(req, res) {
-        let id = req.body.id
-        let activationToken = req.body.activationtoken
-        User.getByToken(id, activationToken).then((user) => {
-            if (user) {
-                User.active(user.id).then(() => {
-                    res.status(200).json({ success: true, message: 'Token Validado' })
-                })
-            } else {
-                res.status(401).json({ success: false, message: 'Token nao validado' })
-            }
-        })
+
+    async active(req, res) {
+        try {
+            let user = await User.getByToken(req.body)
+            await User.active(user.id)
+            res.status(200).json({ success: true, message: 'Token Validado' })
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     }
 }

@@ -11,32 +11,39 @@ module.exports = {
     getAll() {
         return db(TABLE_NAME).select('*')
     },
+
     getByID(id) {
         return db(TABLE_NAME).where('id', id).first()
     },
+
     getByEmail(email) {
         return db(TABLE_NAME).where('email', email).first()
     },
-    getByToken(id, token) {
+
+    async getByToken(user) {
+        if (user.id === undefined || user.nome === '') throw new Error("Falta o ID do usuario")
+        if (user.activationtoken === undefined || user.email === '') throw new Error("Falta o activation token")
         return db(TABLE_NAME)
-            .where('id', id)
-            .where({ activation_token: token })
+            .where('id', user.id)
+            .where({ activation_token: user.activationtoken })
             .first()
     },
-    async setNewToken(id, newToken) {
-        return await db(TABLE_NAME)
+
+    setNewToken(id, newToken) {
+        return db(TABLE_NAME)
             .where('id', id)
             .update('activation_token', newToken)
     },
+
     async register(user) {
-        
-        if (user.nome === undefined || user.nome === '') return { error: "Nome é um atributo obrigatório" }
-        if (user.email === undefined || user.email === '') return { error: "Email é um atributo obrigatório" }
-        if (user.password === undefined || user.password === '') return { error: "Password é um atributo obrigatório" }
+
+        if (user.nome === undefined || user.nome === '') throw new Error("Nome é um atributo obrigatório")
+        if (user.email === undefined || user.email === '') throw new Error("Email é um atributo obrigatório")
+        if (user.password === undefined || user.password === '') throw new Error("Password é um atributo obrigatório")
 
         let existEmail = await this.getByEmail(user.email)
         if (existEmail) {
-            return { error: "Já existe um usuário com esse email" }
+            throw new Error("Já existe um usuário com esse email")
         }
 
         let _user = {
@@ -46,7 +53,7 @@ module.exports = {
             activation_token: util.gerarActivationToken(),
             created_at: util.getNow()
         }
-        
+
         return db(TABLE_NAME).insert(_user);
     },
     active(id) {
@@ -57,6 +64,7 @@ module.exports = {
                 updated_at: util.getNow()
             })
     },
+
     resetToken(id) {
         return db(TABLE_NAME)
             .where('id', id)
@@ -64,6 +72,7 @@ module.exports = {
                 activation_token: null,
             })
     },
+
     updatePassword(userID, newPassword) {
         return db(TABLE_NAME)
             .where('id', userID)
@@ -72,6 +81,7 @@ module.exports = {
                 updated_at: util.getNow()
             })
     },
+
     compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {
         return bcrypt.compareSync(passwordDigitado, passwordDoBanco)
     }
