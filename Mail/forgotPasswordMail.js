@@ -11,7 +11,7 @@ module.exports = (user) => {
         text: 'Email de Recuperacao de senha',
         template: 'forgotPassword-mail',
         context: {
-            username: user.nome,
+            username: user.username,
             tokenAtivacao: `Id: ${user.id} token: ${user.activation_token}`
         }
     };

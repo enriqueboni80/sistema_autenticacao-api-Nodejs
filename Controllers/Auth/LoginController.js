@@ -13,7 +13,7 @@ module.exports = {
             }
             var passwordsSaoIguais = User.compararPasswordsBycrypt(req.body.password, user.password)
             if (passwordsSaoIguais) {
-                if (!user.active) {
+                if (!user.validated) {
                     return res.status(401).send('USUARIO NÃO ATIVADO')
                 } else {
                     let gruposUsuario = await gruposUsuarios.getGroupsById(user.id)

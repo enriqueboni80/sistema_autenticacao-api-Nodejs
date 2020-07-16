@@ -4,6 +4,6 @@ var RegisterController = require('../../Controllers/Auth/RegisterController');
 
 /* REGISTER ROUTES */
 router.post('/', RegisterController.register);
-router.post('/active', RegisterController.active)
+router.post('/validate', RegisterController.validate)
 
 module.exports = router;

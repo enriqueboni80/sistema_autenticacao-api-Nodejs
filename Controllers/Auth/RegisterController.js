@@ -16,10 +16,10 @@ module.exports = {
         }
     },
 
-    async active(req, res) {
+    async validate(req, res) {
         try {
             let user = await User.getByToken(req.body)
-            await User.active(user.id)
+            await User.validate(user.id)
             res.status(200).json({ success: true, message: 'Token Validado' })
         } catch (error) {
             return res.status(400).json({ error: error.message })

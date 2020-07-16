@@ -20,7 +20,7 @@ module.exports = {
             let user = await User.getByToken(req.body)
             let newPassword = util.gerarHash(req.body.password)
             await User.updatePassword(user.id, newPassword)
-            await User.active(user.id)
+            await User.validate(user.id)
             res.status(200).json({ success: true, message: 'ok' });
         } catch (error) {
             return res.status(400).json({ error: error.message })

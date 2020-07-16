@@ -11,7 +11,7 @@ module.exports = (user) => {
         text: 'Bem Vindo ao Sistema',
         template: 'register-mail',
         context: {
-            username: user.nome,
+            username: user.username,
             tokenAtivacao: `Id: ${user.id} token: ${user.activation_token}`
         }
     };

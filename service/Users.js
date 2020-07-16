@@ -22,7 +22,7 @@ module.exports = {
     },
 
     async getByToken(user) {
-        if (user.id === undefined || user.nome === '') throw new Error("Falta o ID do usuario")
+        if (user.id === undefined || user.username === '') throw new Error("Falta o ID do usuario")
         if (user.activationtoken === undefined || user.email === '') throw new Error("Falta o activation token")
         return db(TABLE_NAME)
             .where('id', user.id)
@@ -38,7 +38,7 @@ module.exports = {
 
     async register(user) {
 
-        if (user.nome === undefined || user.nome === '') throw new Error("Nome é um atributo obrigatório")
+        if (user.username === undefined || user.username === '') throw new Error("username é um atributo obrigatório")
         if (user.email === undefined || user.email === '') throw new Error("Email é um atributo obrigatório")
         if (user.password === undefined || user.password === '') throw new Error("Password é um atributo obrigatório")
 
@@ -48,7 +48,7 @@ module.exports = {
         }
 
         let _user = {
-            nome: user.nome,
+            username: user.username,
             email: user.email,
             password: util.gerarHash(user.password),
             activation_token: util.gerarActivationToken(),
@@ -57,11 +57,11 @@ module.exports = {
 
         return db(TABLE_NAME).insert(_user);
     },
-    active(id) {
+    validate(id) {
         return db(TABLE_NAME)
             .where('id', id)
             .update({
-                active: true,
+                validated: true,
                 updated_at: util.getNow()
             })
     },
