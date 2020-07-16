@@ -1,4 +1,5 @@
 const User = require('../../service/Users');
+const GruposUsuarios = require('../../service/GruposUsuarios');
 var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent');
 const { restart } = require('nodemon');
@@ -9,6 +10,7 @@ module.exports = {
             let result = await User.register(req.body)
             let user_id = result
             let user = await User.getByID(user_id)
+            await GruposUsuarios.setClientGroup(user_id)
             registerEvent(user)
             return res.status(201).json({ success: true, userId: user.id, message: 'ok' });
         } catch (error) {

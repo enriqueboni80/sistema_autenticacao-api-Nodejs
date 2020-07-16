@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 
-
 module.exports = {
     getNow() {
         return new Date(Date.now())

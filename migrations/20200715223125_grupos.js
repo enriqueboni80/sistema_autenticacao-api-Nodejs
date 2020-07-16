@@ -1,8 +1,8 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('grupos', table => {
-        table.increments('id').unsigned().primary()
-        table.integer('name')
+        table.integer('id').unsigned().primary()
+        table.string('name')
     })
 };
 
