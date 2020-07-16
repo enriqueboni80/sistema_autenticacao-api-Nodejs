@@ -17,7 +17,7 @@ module.exports = {
     },
 
     getByEmail(email) {
-        if (email === undefined || email === '') throw new Error("Falta receber o email")
+        if (email === undefined || email === '') throw new Error("Email é um atributo obrigatório")
         return db(TABLE_NAME).where('email', email).first()
     },
 
@@ -41,11 +41,6 @@ module.exports = {
         if (user.username === undefined || user.username === '') throw new Error("username é um atributo obrigatório")
         if (user.email === undefined || user.email === '') throw new Error("Email é um atributo obrigatório")
         if (user.password === undefined || user.password === '') throw new Error("Password é um atributo obrigatório")
-
-        let existEmail = await this.getByEmail(user.email)
-        if (existEmail) {
-            throw new Error("Já existe um usuário com esse email")
-        }
 
         let _user = {
             username: user.username,

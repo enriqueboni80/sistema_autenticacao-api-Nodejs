@@ -64,10 +64,14 @@ test('Não deve inserir usuário sem email', () => {
 })
 
 test('Não deve inserir usuário com email existente', async () => {
-    let user_id = await serviceUser.register({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
-    let user = await serviceUser.getByID(user_id)
+    let email = `enriqueboni80+${Date.now()}@gmail.com`
+    let firstUser = { 'username': 'José ', 'email': email, 'password': 'abc123.' }
+    let secondUser = { 'username': 'André', 'email': email, 'password': 'abc123.' }
+
+    await request(app).post('/register').send(firstUser)
+
     return await request(app).post('/register')
-        .send(user)
+        .send(secondUser)
         .then((res) => {
             expect(res.status).toBe(400)
             expect(res.body.error).toBe('Já existe um usuário com esse email')

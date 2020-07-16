@@ -6,13 +6,18 @@ const { restart } = require('nodemon');
 
 module.exports = {
     async register(req, res) {
+
         try {
+            let existEmail = await User.getByEmail(req.body.email)
+            if (existEmail) {
+                return res.status(400).json({ error: 'Já existe um usuário com esse email' })
+            }
             let result = await User.register(req.body)
             let user_id = result
             let user = await User.getByID(user_id)
             await GruposUsuarios.setClientGroup(user_id)
             registerEvent(user)
-            return res.status(201).json({ success: true, userId: user.id, message: 'ok' });
+            return res.status(201).json({ success: true, userId: user.id, email: user.email, message: 'ok' });
         } catch (error) {
             return res.status(400).json({ error: error.message })
         }

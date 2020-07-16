@@ -6,7 +6,8 @@ exports.up = function (knex) {
         table.string('email').notNull().unique()
         table.string('password').notNull()
         table.string('activation_token').nullable()
-        table.boolean('validated').defaultTo(false)
+        table.boolean('validated').defaultTo(false).notNull()
+        table.boolean('active').defaultTo(true).notNull()
         table.timestamps(false, false)
     })
 };
