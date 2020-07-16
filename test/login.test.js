@@ -4,8 +4,8 @@ const app = require('../app')
 const serviceUser = require('../service/Users')
 
 test('Autenticando o usuario', async () => {
-    let user_id = await serviceUser.register({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
-    let user = await serviceUser.getByID(user_id)
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByEmail(result.body.email)
     await serviceUser.validate(user.id)
     return request(app).post('/login')
         .send({ 'email': user.email, 'password': 'abc123.'})

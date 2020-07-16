@@ -13,8 +13,8 @@ test('testando registro de usuario', async () => {
 });
 
 test('Ativando usuario através do activationToken', async () => {
-    let user_id = await serviceUser.register({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
-    let user = await serviceUser.getByID(user_id)
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'id': user.id, 'activationtoken': user.activation_token })
         .then((res) => {
@@ -24,8 +24,8 @@ test('Ativando usuario através do activationToken', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando ID', async () => {
-    let user_id = await serviceUser.register({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
-    let user = await serviceUser.getByID(user_id)
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'activationtoken': user.activation_token })
         .then((res) => {
@@ -35,8 +35,8 @@ test('Ativando usuario através do activationToken : Faltando ID', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando activationToken', async () => {
-    let user_id = await serviceUser.register({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
-    let user = await serviceUser.getByID(user_id)
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'id': user.id })
         .then((res) => {
