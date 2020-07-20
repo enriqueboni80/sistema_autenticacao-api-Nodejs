@@ -3,6 +3,7 @@ const GruposUsuarios = require('../../service/GruposUsuarios');
 var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent');
 const { restart } = require('nodemon');
+const { getByEmail } = require('../../service/Users');
 
 module.exports = {
     async register(req, res) {
@@ -31,5 +32,19 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({ error: error.message })
         }
+    },
+
+    async checkEmailFree(req, res) {
+        try {
+            let user = await User.getByEmail(req.body.email)
+            if(!user){
+                res.status(200).json({ success: true, message: 'email liberado para registro' })
+            }else{
+                return res.status(200).json({ success: false, message: 'email não liberado' })
+            }
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     }
+
 }

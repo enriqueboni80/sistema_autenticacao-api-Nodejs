@@ -42,6 +42,14 @@ module.exports = {
         if (user.email === undefined || user.email === '') throw new Error("Email é um atributo obrigatório")
         if (user.password === undefined || user.password === '') throw new Error("Password é um atributo obrigatório")
 
+        if (user.username.length < 4 || user.username.length > 50) throw new Error("username não pode ser menor que 4 e nem maior que 50")
+
+        const regexEmail = new RegExp(/^([\w\+\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/)
+        if (!regexEmail.test(user.email)) throw new Error("Email não corresponde ao regex")
+
+        const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã.\d]{7,}$/);
+        if (!regxPassword.test(user.password)) throw new Error("Password não corresponde ao regex")
+
         let _user = {
             username: user.username,
             email: user.email,

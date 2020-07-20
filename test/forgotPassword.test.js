@@ -4,7 +4,7 @@ const app = require('../app')
 const serviceUser = require('../service/Users')
 
 test('Enviar email com token para recuperação de senha', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/forgot-password')
         .send({ 'email': user.email})
@@ -24,7 +24,7 @@ test('Enviar email com token para recuperação de senha : Faltando passar o ema
 });
 
 test('Resetando a senha do usuario - através do forgot Password', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/forgot-password/reset')
         .send({ 'id': user.id, 'activationtoken': user.activation_token, 'password': 'LivroAberto.' })

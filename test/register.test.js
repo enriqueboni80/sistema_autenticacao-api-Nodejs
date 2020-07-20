@@ -3,17 +3,53 @@ const request = require('supertest')
 const app = require('../app')
 const serviceUser = require('../service/Users')
 
-test('testando registro de usuario', async () => {
+test('Registrando o usuario', async () => {
     return await request(app).post('/register')
-        .send({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+        .send({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(201)
             expect(res.body).toHaveProperty('message', 'ok')
         })
 });
 
+test('Registrando o usuario : Não aceitar username menor que 4 caracteres', async () => {
+    return await request(app).post('/register')
+        .send({ 'username': 'Jos', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('username não pode ser menor que 4 e nem maior que 50')
+        })
+});
+
+test('Registrando o usuario : Não aceitar username maior que 50 caracteres', async () => {
+    return await request(app).post('/register')
+        .send({ 'username': 'Joseadasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfaf', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('username não pode ser menor que 4 e nem maior que 50')
+        })
+});
+
+test('Registrando o usuario : Não aceitar mail inválido', async () => {
+    return await request(app).post('/register')
+        .send({ 'username': 'Jose', 'email': `enriqueboni80+${Date.now()}@gmail`, 'password': 'Abc123.' })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('Email não corresponde ao regex')
+        })
+});
+
+test('Registrando o usuario : Não aceitar password fora da regra', async () => {
+    return await request(app).post('/register')
+        .send({ 'username': 'Jose', 'email': `enriqueboni80+${Date.now()}@gmail.com.br`, 'password': 'abc123.' })
+        .then((res) => {
+            expect(res.status).toBe(400)
+            expect(res.body.error).toBe('Password não corresponde ao regex')
+        })
+});
+
 test('Ativando usuario através do activationToken', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'id': user.id, 'activationtoken': user.activation_token })
@@ -24,7 +60,7 @@ test('Ativando usuario através do activationToken', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando ID', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'activationtoken': user.activation_token })
@@ -35,7 +71,7 @@ test('Ativando usuario através do activationToken : Faltando ID', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando activationToken', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     return request(app).post('/register/validate')
         .send({ 'id': user.id })
@@ -47,7 +83,7 @@ test('Ativando usuario através do activationToken : Faltando activationToken', 
 
 test('Não deve inserir usuário sem username', () => {
     return request(app).post('/register')
-        .send({ 'username': '', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'abc123.' })
+        .send({ 'username': '', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
             expect(res.body.error).toBe('username é um atributo obrigatório')
@@ -56,7 +92,7 @@ test('Não deve inserir usuário sem username', () => {
 
 test('Não deve inserir usuário sem email', () => {
     return request(app).post('/register')
-        .send({ 'username': 'Jose da silva', 'password': 'abc123.' })
+        .send({ 'username': 'Jose da silva', 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
             expect(res.body.error).toBe('Email é um atributo obrigatório')
@@ -65,8 +101,8 @@ test('Não deve inserir usuário sem email', () => {
 
 test('Não deve inserir usuário com email existente', async () => {
     let email = `enriqueboni80+${Date.now()}@gmail.com`
-    let firstUser = { 'username': 'José ', 'email': email, 'password': 'abc123.' }
-    let secondUser = { 'username': 'André', 'email': email, 'password': 'abc123.' }
+    let firstUser = { 'username': 'José ', 'email': email, 'password': 'Abc123.' }
+    let secondUser = { 'username': 'André', 'email': email, 'password': 'Abc123.' }
 
     await request(app).post('/register').send(firstUser)
 
