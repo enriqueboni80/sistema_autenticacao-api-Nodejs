@@ -7,6 +7,9 @@ module.exports = {
     async sendResetLinkEmail(req, res, next) {
         try {
             let user = await User.getByEmail(req.body.email)
+            if(!user){
+                return res.status(400).json({ error: "email nao localizado" })
+            }
             /* user.activation_token = util.gerarActivationToken() */
             /* User.setNewToken(user.id, user.token).then(() => {}) */
             forgotPasswordEvent(user)

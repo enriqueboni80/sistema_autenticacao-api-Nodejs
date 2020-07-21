@@ -28,6 +28,9 @@ module.exports = {
         try {
             let user = await User.getByToken(req.body)
             await User.validate(user.id)
+            if (!user) {
+                return res.status(400).json({ error: 'Token não localizado' })
+            }
             res.status(200).json({ success: true, message: 'Token Validado' })
         } catch (error) {
             return res.status(400).json({ error: error.message })
@@ -37,9 +40,9 @@ module.exports = {
     async checkEmailFree(req, res) {
         try {
             let user = await User.getByEmail(req.body.email)
-            if(!user){
+            if (!user) {
                 res.status(200).json({ success: true, message: 'email liberado para registro' })
-            }else{
+            } else {
                 return res.status(200).json({ success: false, message: 'email não liberado' })
             }
         } catch (error) {

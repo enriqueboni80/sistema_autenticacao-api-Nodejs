@@ -22,8 +22,8 @@ module.exports = {
     },
 
     async getByToken(user) {
-        if (user.activationtoken === undefined || user.email === '') throw new Error("Falta o activation token")
-        if (user.id === undefined || user.username === '') throw new Error("Falta o ID do usuario")
+        if (user.activationtoken === undefined || user.activationtoken === '') throw new Error("Falta o activation token")
+        if (user.id === undefined || user.id === '') throw new Error("Falta o ID do usuario")
         return db(TABLE_NAME)
             .where('id', user.id)
             .where({ activation_token: user.activationtoken })
