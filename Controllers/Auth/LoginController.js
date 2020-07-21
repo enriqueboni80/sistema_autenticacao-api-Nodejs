@@ -9,12 +9,12 @@ module.exports = {
         try {
             let user = await User.getByEmail(req.body.email)
             if (!user) {
-                return res.status(401).send('FALHA NA AUTENTICACAO')
+                return res.status(400).json({ error: 'FALHA NA AUTENTICACAO' })
             }
             var passwordsSaoIguais = User.compararPasswordsBycrypt(req.body.password, user.password)
             if (passwordsSaoIguais) {
                 if (!user.validated) {
-                    return res.status(401).send('USUARIO NÃO ATIVADO')
+                    return res.status(400).json({validated: false, error: 'USUARIO NAO ATIVADO' })
                 } else {
                     let gruposUsuario = await gruposUsuarios.getGroupsById(user.id)
                     let gruposQuePertence = []
@@ -37,7 +37,7 @@ module.exports = {
                 }
             }
             else {
-                return res.status(401).send('FALHA NA AUTENTICACAO')
+                return res.status(401).json({ error: 'FALHA NA AUTENTICACAO' })
             }
         } catch (error) {
             return res.status(400).json({ error: error.message })
