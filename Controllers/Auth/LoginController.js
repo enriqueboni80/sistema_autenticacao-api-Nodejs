@@ -32,7 +32,13 @@ module.exports = {
                     return res.status(200).send({
                         success: true,
                         mensagem: "AUTENTICADO COM SUCESSO",
-                        jwtToken: _jwtToken
+                        user: {
+                            username: user.username,
+                            email: user.email,
+                            active: user.active,
+                            jwtToken: _jwtToken
+                        },
+                        /* jwtToken: _jwtToken */
                     })
                 }
             }

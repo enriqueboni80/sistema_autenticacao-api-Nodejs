@@ -60,6 +60,7 @@ module.exports = {
 
         return db(TABLE_NAME).insert(_user);
     },
+    
     validate(id) {
         return db(TABLE_NAME)
             .where('id', id)
