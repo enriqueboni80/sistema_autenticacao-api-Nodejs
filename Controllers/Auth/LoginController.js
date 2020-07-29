@@ -36,6 +36,7 @@ module.exports = {
                             username: user.username,
                             email: user.email,
                             active: user.active,
+                            grupos: user.grupos,
                             jwtToken: _jwtToken
                         },
                         /* jwtToken: _jwtToken */
