@@ -1,8 +1,8 @@
-var passport = require('passport')
+require('dotenv').config()
 var User = require("../../service/Users")
 var gruposUsuarios = require("../../service/GruposUsuarios")
 var jwt = require('jsonwebtoken')
-require('dotenv').config()
+
 
 module.exports = {
     async autenticar(req, res) {

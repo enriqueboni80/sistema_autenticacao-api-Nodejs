@@ -1,13 +1,13 @@
 const request = require('supertest')
 
-const app = require('../app')
-const serviceUser = require('../service/Users')
+const app = require('./../../app')
+const serviceUser = require('./../../service/Users')
 
 test('Autenticando o usuario', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+    var result = await request(app).post('/auth/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
     await serviceUser.validate(user.id)
-    return request(app).post('/login')
+    return request(app).post('/auth/login')
         .send({ 'email': user.email, 'password': 'Abc123.'})
         .then((res) => {
             expect(res.status).toBe(200)

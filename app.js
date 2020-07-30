@@ -46,11 +46,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const $apiUrl = ""
 app.use(`${$apiUrl}/`, indexRouter);
 app.use(`${$apiUrl}/users`, usersRouter);
-app.use(`${$apiUrl}/register`, registerRouter);
-app.use(`${$apiUrl}/forgot-password`, forgotRouter);
-app.use(`${$apiUrl}/login`, loginRouter);
-app.use(`${$apiUrl}/logout`, logoutRouter);
 app.use(`${$apiUrl}/tools`, toolsRouter);
+app.use(`${$apiUrl}/auth/register`, registerRouter);
+app.use(`${$apiUrl}/auth/forgot-password`, forgotRouter);
+app.use(`${$apiUrl}/auth/login`, loginRouter);
+app.use(`${$apiUrl}/auth/logout`, logoutRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

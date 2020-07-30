@@ -1,9 +1,7 @@
 const User = require('../../service/Users');
 const GruposUsuarios = require('../../service/GruposUsuarios');
-var util = require('../../helpers/Util')
 var registerEvent = require('../../events/RegisterEvent');
-const { restart } = require('nodemon');
-const { getByEmail } = require('../../service/Users');
+
 
 module.exports = {
     async register(req, res) {

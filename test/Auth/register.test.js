@@ -1,10 +1,10 @@
 const request = require('supertest')
 
-const app = require('../app')
-const serviceUser = require('../service/Users')
+const app = require('./../../app')
+const serviceUser = require('./../../service/Users')
 
 test('Registrando o usuario', async () => {
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send({ 'username': 'Jose da silva', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(201)
@@ -13,7 +13,7 @@ test('Registrando o usuario', async () => {
 });
 
 test('Registrando o usuario : Não aceitar username menor que 4 caracteres', async () => {
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send({ 'username': 'Jos', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -22,7 +22,7 @@ test('Registrando o usuario : Não aceitar username menor que 4 caracteres', asy
 });
 
 test('Registrando o usuario : Não aceitar username maior que 50 caracteres', async () => {
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send({ 'username': 'Joseadasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfaf', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -31,7 +31,7 @@ test('Registrando o usuario : Não aceitar username maior que 50 caracteres', as
 });
 
 test('Registrando o usuario : Não aceitar mail inválido', async () => {
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send({ 'username': 'Jose', 'email': `enriqueboni80+${Date.now()}@gmail`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -40,7 +40,7 @@ test('Registrando o usuario : Não aceitar mail inválido', async () => {
 });
 
 test('Registrando o usuario : Não aceitar password fora da regra', async () => {
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send({ 'username': 'Jose', 'email': `enriqueboni80+${Date.now()}@gmail.com.br`, 'password': 'abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -49,9 +49,9 @@ test('Registrando o usuario : Não aceitar password fora da regra', async () => 
 });
 
 test('Ativando usuario através do activationToken', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+    var result = await request(app).post('/auth/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
-    return request(app).post('/register/validate')
+    return request(app).post('/auth/register/validate')
         .send({ 'id': user.id, 'activationtoken': user.activation_token })
         .then((res) => {
             expect(res.status).toBe(200)
@@ -60,9 +60,9 @@ test('Ativando usuario através do activationToken', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando ID', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+    var result = await request(app).post('/auth/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
-    return request(app).post('/register/validate')
+    return request(app).post('/auth/register/validate')
         .send({ 'activationtoken': user.activation_token })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -71,9 +71,9 @@ test('Ativando usuario através do activationToken : Faltando ID', async () => {
 });
 
 test('Ativando usuario através do activationToken : Faltando activationToken', async () => {
-    var result = await request(app).post('/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+    var result = await request(app).post('/auth/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
     let user = await serviceUser.getByEmail(result.body.email)
-    return request(app).post('/register/validate')
+    return request(app).post('/auth/register/validate')
         .send({ 'id': user.id })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -82,7 +82,7 @@ test('Ativando usuario através do activationToken : Faltando activationToken', 
 });
 
 test('Não deve inserir usuário sem username', () => {
-    return request(app).post('/register')
+    return request(app).post('/auth/register')
         .send({ 'username': '', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -91,7 +91,7 @@ test('Não deve inserir usuário sem username', () => {
 })
 
 test('Não deve inserir usuário sem email', () => {
-    return request(app).post('/register')
+    return request(app).post('/auth/register')
         .send({ 'username': 'Jose da silva', 'password': 'Abc123.' })
         .then((res) => {
             expect(res.status).toBe(400)
@@ -104,9 +104,9 @@ test('Não deve inserir usuário com email existente', async () => {
     let firstUser = { 'username': 'José ', 'email': email, 'password': 'Abc123.' }
     let secondUser = { 'username': 'André', 'email': email, 'password': 'Abc123.' }
 
-    await request(app).post('/register').send(firstUser)
+    await request(app).post('/auth/register').send(firstUser)
 
-    return await request(app).post('/register')
+    return await request(app).post('/auth/register')
         .send(secondUser)
         .then((res) => {
             expect(res.status).toBe(400)

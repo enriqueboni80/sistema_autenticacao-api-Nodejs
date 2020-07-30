@@ -1,7 +1,7 @@
 
-var jwt = require('jsonwebtoken')
-var jwtDisableList = require("../../jwt-disablelist")
 require('dotenv').config()
+var jwtDisableList = require("../../jwt-disablelist")
+
 
 module.exports = {
     desAutenticar(req, res) {
