@@ -1,6 +1,6 @@
-const User = require('../../service/Users');
-const GruposUsuarios = require('../../service/GruposUsuarios');
-var registerEvent = require('../../events/RegisterEvent');
+const User = require('./../../service/Users');
+const GruposUsuarios = require('./../../service/GruposUsuarios');
+var registerEvent = require('./../../events/RegisterEvent');
 
 
 module.exports = {

@@ -1,6 +1,6 @@
-const User = require('../../service/Users');
-var util = require('../../helpers/Util')
-var forgotPasswordEvent = require('../../events/forgotPasswordEvent')
+const User = require('./../../service/Users');
+var util = require('./../../helpers/Util')
+var forgotPasswordEvent = require('./../../events/forgotPasswordEvent')
 
 
 module.exports = {

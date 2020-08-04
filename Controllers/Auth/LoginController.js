@@ -1,6 +1,6 @@
 require('dotenv').config()
-var User = require("../../service/Users")
-var gruposUsuarios = require("../../service/GruposUsuarios")
+var User = require("./../../service/Users")
+var gruposUsuarios = require("./../../service/GruposUsuarios")
 var jwt = require('jsonwebtoken')
 
 

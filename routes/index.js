@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var IndexController = require('../controllers/IndexController');
-var auth = require('../middlewares/ensureAuthenticated')
-const constants = require('../helpers/Constants')
+var IndexController = require('./../controllers/IndexController');
+var auth = require('./../middlewares/ensureAuthenticated')
+const constants = require('./../helpers/Constants')
 
 /* HOME PAGE ROUTES. */
 router.get('/', IndexController.index);
