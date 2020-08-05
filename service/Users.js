@@ -60,7 +60,7 @@ module.exports = {
 
         return db(TABLE_NAME).insert(_user);
     },
-    
+
     validate(id) {
         return db(TABLE_NAME)
             .where('id', id)
@@ -85,6 +85,16 @@ module.exports = {
                 password: newPassword,
                 updated_at: util.getNow()
             })
+    },
+
+    update(user) {
+        return db(TABLE_NAME)
+            .where('id', user.id)
+            .update({
+                username: user.username,
+                email: user.email,
+                password: util.gerarHash(user.password),
+            });
     },
 
     compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {

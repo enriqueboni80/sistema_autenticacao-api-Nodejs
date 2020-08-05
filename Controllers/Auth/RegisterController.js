@@ -11,8 +11,7 @@ module.exports = {
             if (existEmail) {
                 return res.status(400).json({ error: 'Já existe um usuário com esse email' })
             }
-            let result = await User.register(req.body)
-            let user_id = result
+            let user_id = await User.register(req.body)
             let user = await User.getByID(user_id)
             await GruposUsuarios.setClientGroup(user_id)
             registerEvent(user)
