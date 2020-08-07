@@ -10,6 +10,9 @@ module.exports = {
         res.send('Alguma ação de post');
     },
     async update(req, res, next) {
+        if (req.usuario.id !== req.body.id) {
+            return res.status(400).json({ success: false, message: 'não autorizado' });
+        }
         try {
             await User.update(req.body)
             if (req.body.endereco) {
@@ -22,7 +25,7 @@ module.exports = {
             }
             return res.status(200).json({ success: true, message: 'ok' });
         } catch (error) {
-            return res.status(400).json({ success: false, message: "deu problema"});
+            return res.status(400).json({ success: false, message: "deu problema" });
         }
     },
 }
