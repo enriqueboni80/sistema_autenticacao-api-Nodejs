@@ -10,9 +10,8 @@ module.exports = {
         res.send('Alguma ação de post');
     },
     async update(req, res, next) {
-        if (req.usuario.id !== req.body.id) {
-            return res.status(400).json({ success: false, message: 'não autorizado' });
-        }
+        //Insiro o id do usuario logado no bocy
+        req.body.id = req.usuario.id
         try {
             await User.update(req.body)
             if (req.body.endereco) {

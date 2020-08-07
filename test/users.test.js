@@ -23,7 +23,6 @@ test('Atualizando usuario : Sem Endereço', async () => {
     return request(app).put('/users')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
-            "id": user.id,
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`
@@ -40,7 +39,6 @@ test('Atualizando usuario : Atualizando e Criando um Endereço', async () => {
     return request(app).put('/users')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
-            "id": user.id,
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
@@ -59,7 +57,6 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
     await request(app).put('/users')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
-            "id": user.id,
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
@@ -69,7 +66,6 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
     return request(app).put('/users')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
-            "id": user.id,
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
@@ -78,24 +74,5 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
         .then((res) => {
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('success', true)
-        })
-});
-
-test('Atualizando usuario : Usuario não pode atualizar informações que não são dele', async () => {
-    var user1 = await criaUsuario()
-    var userAuth1 = await autenticarUsuario(user1)
-    var user2 = await criaUsuario()
-    await request(app).put('/users')
-        .set('Authorization', `Bearer ${userAuth1.jwtToken}`)
-        .send({
-            "id": user2.id,
-            "username": "enrique_atualizado",
-            "password": "Abc123.....!!!",
-            "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
-            "endereco": { "rua": "Rua das Couves" }
-        })
-        .then((res) => {
-            expect(res.status).toBe(400)
-            expect(res.body).toHaveProperty('success', false)
         })
 });
