@@ -1,7 +1,20 @@
 # sistema_autenticacao-api-Nodejs
 
-1 - npx knex migrate:latest 
-2 - npx knex seed:run
+##### Instalar as dependências
+```
+npm install
+```
+##### Rodar a migrate para criar o banco
+```
+npm run knex migrate:latest
+```
+##### rodar seed para primeira inserção nas tabelas
+```
+npm run knex seed:run
+```
 
-rodar testes: npm run secure-mode
+##### rodar teste Jest
+```
+npm run secure-mode
+```
 
