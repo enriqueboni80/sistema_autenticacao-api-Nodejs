@@ -4,6 +4,7 @@ var forgotPasswordEvent = require('./../../events/forgotPasswordEvent')
 
 
 module.exports = {
+    // TODO - TROCAR PARA sendResetToken (activateToken)
     async sendResetLinkEmail(req, res, next) {
         try {
             let user = await User.getByEmail(req.body.email)
