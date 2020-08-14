@@ -11,8 +11,8 @@ module.exports = (user) => {
         text: 'Email de Recuperacao de senha',
         template: 'forgotPassword-mail',
         context: {
-            username: user.nome,
-            link_ativacao: `${process.env.APP_URL}/forgot-password/${user.id}/forgot/${user.token}`
+            username: user.username,
+            tokenAtivacao: `Id: ${user.id} token: ${user.activation_token}`
         }
     };
     sendEmail(mailOptions)

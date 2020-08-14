@@ -11,8 +11,8 @@ module.exports = (user) => {
         text: 'Bem Vindo ao Sistema',
         template: 'register-mail',
         context: {
-            username: user.nome,
-            link_ativacao: `${process.env.APP_URL}/register/${user.id}/active/${user.token}`
+            username: user.username,
+            tokenAtivacao: `Id: ${user.id} token: ${user.activation_token}`
         }
     };
     sendEmail(mailOptions)

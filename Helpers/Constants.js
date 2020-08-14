@@ -1,0 +1,9 @@
+module.exports = {
+    SYS_ADMIN: 1,
+    ADMINISTRATORS: 2,
+    MANAGERS: 3,
+    ADMINISTRATIVE_EMPLOYEES: 4,
+    FINANCE_EMPLOYEES: 5,
+    PRODUCERS: 6,
+    CLIENTS: 7
+}

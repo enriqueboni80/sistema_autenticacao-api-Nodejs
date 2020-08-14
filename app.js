@@ -1,9 +1,10 @@
-var createError = require('http-errors');
 var express = require('express');
+var createError = require('http-errors');
+var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
+var bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,18 +12,13 @@ var registerRouter = require('./routes/Auth/register');
 var forgotRouter = require('./routes/Auth/forgotPassword');
 var loginRouter = require('./routes/Auth/login');
 var logoutRouter = require('./routes/Auth/logout');
+var toolsRouter = require('./routes/tools');
 
 var app = express();
-require('./configs/local.strategy');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-// Set passport configs
-app.use(require('express-session')({ secret: 'shhhh...', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,12 +26,32 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/register', registerRouter);
-app.use('/forgot-password', forgotRouter);
-app.use('/login', loginRouter);
-app.use('/logout', logoutRouter);
+
+//Cors
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  app.use(cors());
+  next();
+});
+
+//Body-parser
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//Ativando Rotas
+const $apiUrl = ""
+app.use(`${$apiUrl}/`, indexRouter);
+app.use(`${$apiUrl}/users`, usersRouter);
+app.use(`${$apiUrl}/tools`, toolsRouter);
+app.use(`${$apiUrl}/auth/register`, registerRouter);
+app.use(`${$apiUrl}/auth/forgot-password`, forgotRouter);
+app.use(`${$apiUrl}/auth/login`, loginRouter);
+app.use(`${$apiUrl}/auth/logout`, logoutRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

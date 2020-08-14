@@ -1,45 +1,50 @@
-const User = require('../../store/Users');
-var util = require('../../helpers/Util')
-var registerEvent = require('../../events/RegisterEvent')
+const User = require('./../../service/Users');
+const GruposUsuarios = require('./../../service/GruposUsuarios');
+var registerEvent = require('./../../events/RegisterEvent');
+
 
 module.exports = {
-    showRegistrationForm(req, res, next) {
-        res.send('exibir formulario de cadastro');
-    },
-    register(req, res, next) {
-        user = {
-            nome: req.body.nome,
-            email: req.body.email,
-            password: util.gerarHash(req.body.password),
-            token: util.gerarToken(),
-            created_at: util.getNow()
-        }
-        User.register(user).then((result) => {
-            user.id = result
-            registerEvent(user)
-            res.json({ success: true, message: 'ok' });
-        })
-    },
-    active(req, res) {
-        let id = req.params.id
-        let token = req.params.token
-        User.getByToken(id, token).then((result) => {
-            if (result) {
-                console.log('usuario e token encontrados')
-                User.active(result.id).then(() => { })
-                res.send('Email Validado! Agora é meter bronca!')
-            } else {
-                console.log('usuario ou token não localizados')
+    async register(req, res) {
+
+        try {
+            let existEmail = await User.getByEmail(req.body.email)
+            if (existEmail) {
+                return res.status(400).json({ error: 'Já existe um usuário com esse email' })
             }
-        })
-    },
-    enviarEmail(req, res) {
-        user = {
-            'id': '25',
-            'nome': 'Enrique Santos',
-            'email': 'enriqueboni80@hotmail.com',
-            'token': 'dfasdfadfadfadf'
+            let user_id = await User.register(req.body)
+            let user = await User.getByID(user_id)
+            await GruposUsuarios.setClientGroup(user_id)
+            registerEvent(user)
+            return res.status(201).json({ success: true, userId: user.id, email: user.email, message: 'ok' });
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
         }
-        registerEvent(user)
+    },
+
+    async validate(req, res) {
+        try {
+            let user = await User.getByToken(req.body)
+            await User.validate(user.id)
+            if (!user) {
+                return res.status(400).json({ error: 'Token não localizado' })
+            }
+            res.status(200).json({ success: true, message: 'Token Validado' })
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
+    },
+
+    async checkEmailFree(req, res) {
+        try {
+            let user = await User.getByEmail(req.body.email)
+            if (!user) {
+                res.status(200).json({ success: true, message: 'email liberado para registro' })
+            } else {
+                return res.status(200).json({ success: false, message: 'email não liberado' })
+            }
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     }
+
 }
