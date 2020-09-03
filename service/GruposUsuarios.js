@@ -12,5 +12,8 @@ module.exports = {
     },
     setClientGroup(idUsuario) {
         return db(TABLE_NAME).insert({'user_id': idUsuario, 'grupo_id' : constants.CLIENTS})
+    },
+    setGroup(idUsuario, idGrupo = constants.CLIENTS) {
+        return db(TABLE_NAME).insert({'user_id': idUsuario, 'grupo_id' : idGrupo})
     }
 }

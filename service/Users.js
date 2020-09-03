@@ -50,6 +50,12 @@ module.exports = {
         const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã.\d]{7,}$/);
         if (!regxPassword.test(user.password)) throw new Error("Password não corresponde ao regex")
 
+
+        let existEmail = await this.getByEmail(user.email)
+        if (existEmail) {
+            throw new Error("Já existe um usuário com esse email")
+        }
+
         let _user = {
             username: user.username,
             email: user.email,
