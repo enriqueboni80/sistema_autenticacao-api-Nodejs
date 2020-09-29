@@ -1,9 +1,10 @@
+require('dotenv').config()
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
 const util = require('../helpers/Util')
 const bcrypt = require('bcryptjs');
 const Util = require('../helpers/Util');
-const db = knex(knexConfigs.development)
+const db = knex(knexConfigs[process.env.NODE_ENV])
 
 const TABLE_NAME = 'users'
 

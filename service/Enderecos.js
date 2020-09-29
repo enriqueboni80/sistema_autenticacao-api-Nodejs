@@ -1,7 +1,7 @@
+require('dotenv').config()
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
-const db = knex(knexConfigs.development)
-const constants = require('../helpers/Constants')
+const db = knex(knexConfigs[process.env.NODE_ENV])
 
 
 const TABLE_NAME = 'enderecos'
