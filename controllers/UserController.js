@@ -1,6 +1,6 @@
-const User = require('./../service/Users');
-const Endereco = require('./../service/Enderecos');
-const GruposUsuarios = require('./../service/GruposUsuarios');
+const User = require('../service/Users');
+const Endereco = require('../service/Enderecos');
+const GruposUsuarios = require('../service/GruposUsuarios');
 
 module.exports = {
     async index(req, res, next) {
