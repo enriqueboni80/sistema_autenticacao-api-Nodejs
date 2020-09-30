@@ -18,3 +18,11 @@ npm run knex seed:run
 npm run secure-mode
 ```
 
+##### USUARIO ADMIN (Painel Administrativo)
+user: admin@admin.com
+password: Admin123
+
+
+
+
+
