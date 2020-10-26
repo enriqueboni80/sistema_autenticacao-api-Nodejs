@@ -1,6 +1,6 @@
 
 require('dotenv').config()
-var jwtDisableList = require("../../jwt-disablelist")
+var jwtDisableList = require("./../../jwt-disablelist")
 
 
 module.exports = {

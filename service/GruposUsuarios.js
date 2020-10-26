@@ -1,6 +1,7 @@
+require('dotenv').config()
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
-const db = knex(knexConfigs.development)
+const db = knex(knexConfigs[process.env.NODE_ENV])
 const constants = require('../helpers/Constants')
 
 
@@ -12,5 +13,8 @@ module.exports = {
     },
     setClientGroup(idUsuario) {
         return db(TABLE_NAME).insert({'user_id': idUsuario, 'grupo_id' : constants.CLIENTS})
+    },
+    setGroup(idUsuario, idGrupo = constants.CLIENTS) {
+        return db(TABLE_NAME).insert({'user_id': idUsuario, 'grupo_id' : idGrupo})
     }
 }

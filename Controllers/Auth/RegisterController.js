@@ -1,20 +1,15 @@
-const User = require('../../service/Users');
-const GruposUsuarios = require('../../service/GruposUsuarios');
-var registerEvent = require('../../events/RegisterEvent');
+const User = require('./../../service/Users');
+const GruposUsuarios = require('./../../service/GruposUsuarios');
+const registerEvent = require('./../../events/RegisterEvent');
+const constants = require('./../../helpers/Constants')
 
 
 module.exports = {
     async register(req, res) {
-
         try {
-            let existEmail = await User.getByEmail(req.body.email)
-            if (existEmail) {
-                return res.status(400).json({ error: 'Já existe um usuário com esse email' })
-            }
-            let result = await User.register(req.body)
-            let user_id = result
+            let user_id = await User.register(req.body)
             let user = await User.getByID(user_id)
-            await GruposUsuarios.setClientGroup(user_id)
+            await GruposUsuarios.setGroup(user_id, constants.CLIENTS)
             registerEvent(user)
             return res.status(201).json({ success: true, userId: user.id, email: user.email, message: 'ok' });
         } catch (error) {

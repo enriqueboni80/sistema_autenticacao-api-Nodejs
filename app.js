@@ -1,57 +1,31 @@
 var express = require('express');
+var app = express();
 var createError = require('http-errors');
-var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser')
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var registerRouter = require('./routes/Auth/register');
-var forgotRouter = require('./routes/Auth/forgotPassword');
-var loginRouter = require('./routes/Auth/login');
-var logoutRouter = require('./routes/Auth/logout');
-var toolsRouter = require('./routes/tools');
-
-var app = express();
+var swaggerDoc = require('./swagger/swaggerDoc')
+var initializeRoutes = require('./initializeRoutes')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//Cors
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  app.use(cors());
-  next();
-});
-
 //Body-parser
-// support parsing of application/json type post data
 app.use(bodyParser.json());
-//support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Ativando Rotas
-const $apiUrl = ""
-app.use(`${$apiUrl}/`, indexRouter);
-app.use(`${$apiUrl}/users`, usersRouter);
-app.use(`${$apiUrl}/tools`, toolsRouter);
-app.use(`${$apiUrl}/auth/register`, registerRouter);
-app.use(`${$apiUrl}/auth/forgot-password`, forgotRouter);
-app.use(`${$apiUrl}/auth/login`, loginRouter);
-app.use(`${$apiUrl}/auth/logout`, logoutRouter);
+//Ligando Rotas - Obs: Configuração do Cors esta aqui dentro
+initializeRoutes(app)
 
+//SwaggerDoc tem que vir depois das rotas
+swaggerDoc(app)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

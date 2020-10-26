@@ -1,9 +1,10 @@
-const User = require('../../service/Users');
-var util = require('../../helpers/Util')
-var forgotPasswordEvent = require('../../events/forgotPasswordEvent')
+const User = require('./../../service/Users');
+var util = require('./../../helpers/Util')
+var forgotPasswordEvent = require('./../../events/forgotPasswordEvent')
 
 
 module.exports = {
+    // TODO - TROCAR PARA sendResetToken (activateToken)
     async sendResetLinkEmail(req, res, next) {
         try {
             let user = await User.getByEmail(req.body.email)

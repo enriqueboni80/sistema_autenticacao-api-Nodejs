@@ -1,9 +1,10 @@
+require('dotenv').config()
 const knex = require('knex')
 const knexConfigs = require('../knexfile')
 const util = require('../helpers/Util')
 const bcrypt = require('bcryptjs');
 const Util = require('../helpers/Util');
-const db = knex(knexConfigs.development)
+const db = knex(knexConfigs[process.env.NODE_ENV])
 
 const TABLE_NAME = 'users'
 
@@ -50,6 +51,12 @@ module.exports = {
         const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã.\d]{7,}$/);
         if (!regxPassword.test(user.password)) throw new Error("Password não corresponde ao regex")
 
+
+        let existEmail = await this.getByEmail(user.email)
+        if (existEmail) {
+            throw new Error("Já existe um usuário com esse email")
+        }
+
         let _user = {
             username: user.username,
             email: user.email,
@@ -60,7 +67,7 @@ module.exports = {
 
         return db(TABLE_NAME).insert(_user);
     },
-    
+
     validate(id) {
         return db(TABLE_NAME)
             .where('id', id)
@@ -85,6 +92,16 @@ module.exports = {
                 password: newPassword,
                 updated_at: util.getNow()
             })
+    },
+
+    update(user) {
+        return db(TABLE_NAME)
+            .where('id', user.id)
+            .update({
+                username: user.username,
+                email: user.email,
+                password: util.gerarHash(user.password),
+            });
     },
 
     compararPasswordsBycrypt(passwordDigitado, passwordDoBanco) {
