@@ -20,6 +20,10 @@ module.exports = {
             filename: './sqlite-test.db'
         },
         useNullAsDefault: true,
+        migrations: {
+            tableName: "knex_migrations",
+            directory: './migrations'
+        },
         seeds: {
             directory: './seeds'
         }
