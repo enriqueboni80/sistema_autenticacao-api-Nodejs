@@ -21,7 +21,7 @@ test('Registrando um evento', async () => {
 });
 
 test('Retornando todos os Eventos', async () => {
-    return await request(app).post('/eventos')
+    await request(app).post('/eventos')
         .send({
             "name": `Puc_teste`,
             "qtd_vagas": 20,
@@ -41,11 +41,11 @@ test('Retornando todos os Eventos', async () => {
             "descricao": "Evento de teste",
             "data_inicio": "2020-02-02 00:00:00",
             "data_fim": "2020-02-02 00:00:00"
-        }).then(() => {
-            return request(app).get('/eventos').then((res) => {
-                expect(res.body.length).toBeGreaterThan(1)
-                expect(res.status).toBe(200)
-            })
+        })
+
+        return request(app).get('/eventos').then((res) => {
+            expect(res.body.length).toBeGreaterThan(1)
+            expect(res.status).toBe(200)
         })
 });
 

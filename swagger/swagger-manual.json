@@ -295,14 +295,26 @@
                 "palestrante": {
                   "type": "string"
                 },
-                "gratuito": {
-                  "type": "boolean"
+                "url_imagem": {
+                  "type": "string"
+                },
+                "detalhes": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
                 },
                 "ativo": {
                   "type": "boolean"
                 },
-                "descricao": {
-                  "type": "string"
+                "gratuito": {
+                  "type": "boolean"
+                },
+                "privado": {
+                  "type": "boolean"
+                },
+                "cancelado": {
+                  "type": "boolean"
                 },
                 "data_inicio": {
                   "type": "string"
@@ -368,9 +380,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "type": "integer"
-                },
                 "name": {
                   "type": "string"
                 },
@@ -380,14 +389,26 @@
                 "palestrante": {
                   "type": "string"
                 },
-                "gratuito": {
-                  "type": "boolean"
+                "url_imagem": {
+                  "type": "string"
+                },
+                "detalhes": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
                 },
                 "ativo": {
                   "type": "boolean"
                 },
-                "descricao": {
-                  "type": "string"
+                "gratuito": {
+                  "type": "boolean"
+                },
+                "privado": {
+                  "type": "boolean"
+                },
+                "cancelado": {
+                  "type": "boolean"
                 },
                 "data_inicio": {
                   "type": "string"
