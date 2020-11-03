@@ -14,7 +14,7 @@ module.exports = {
             useNullAsDefault: true
         }, */
 
-    development: {
+    test: {
         client: 'sqlite3',
         connection: {
             filename: './sqlite-test.db'
@@ -29,7 +29,7 @@ module.exports = {
         }
     },
 
-    test: {
+    development: {
         client: 'pg',
         connection: process.env.DATABASE_URL,
         useNullAsDefault: true,
