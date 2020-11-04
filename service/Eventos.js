@@ -9,7 +9,7 @@ const TABLE_NAME = 'eventos'
 module.exports = {
 
     getAll() {
-        return db(TABLE_NAME).select('*')
+        return db(TABLE_NAME).select('*').leftJoin('enderecos', `${TABLE_NAME}.id`, 'enderecos.evento_id')
     },
 
 
