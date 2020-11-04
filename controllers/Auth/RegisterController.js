@@ -10,7 +10,7 @@ module.exports = {
             let user_id = await User.register(req.body)
             let user = await User.getByID(user_id)
             await GruposUsuarios.setGroup(user_id, constants.CLIENTS)
-            registerEvent(user)
+            /* registerEvent(user) */
             return res.status(201).json({ success: true, userId: user.id, email: user.email, message: 'ok' });
         } catch (error) {
             return res.status(400).json({ error: error.message })

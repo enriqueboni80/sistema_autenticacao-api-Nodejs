@@ -96,7 +96,7 @@ module.exports = {
 
     update(user) {
         return db(TABLE_NAME)
-            .where('id', user.id)
+            .where('id', user.user_id)
             .update({
                 username: user.username,
                 email: user.email,

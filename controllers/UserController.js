@@ -25,11 +25,11 @@ module.exports = {
     },
     async update(req, res, next) {
         //Insiro o id do usuario logado no body
-        req.body.id = req.usuario.id
+        req.body.user_id = req.usuario.id
         try {
             await User.update(req.body)
             if (req.body.endereco) {
-                let endereco = await Endereco.getByUserId(req.body.id)
+                let endereco = await Endereco.getByUserId(req.body.user_id)
                 if (endereco.length === 0) {
                     await Endereco.create(req.body)
                 } else {
