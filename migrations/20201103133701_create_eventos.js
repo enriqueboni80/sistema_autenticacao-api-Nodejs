@@ -8,6 +8,7 @@ exports.up = function(knex) {
         table.string('url_imagem').nullable()
         table.string('detalhes').nullable()
         table.string('descricao').nullable()
+        table.float('preco').nullable()
         table.boolean('ativo').defaultTo(false).notNull()
         table.boolean('gratuito').defaultTo(true).notNull()
         table.boolean('privado').defaultTo(false).notNull()

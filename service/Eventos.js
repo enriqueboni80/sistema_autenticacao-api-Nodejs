@@ -27,10 +27,15 @@ module.exports = {
         let _evento = {
             name: evento.name,
             qtd_vagas: evento.qtd_vagas,
-            descricao: evento.descricao,
             palestrante: evento.palestrante,
-            gratuito: evento.gratuito,
+            url_imagem: evento.url_imagem,
+            detalhes: evento.detalhes,
+            descricao: evento.descricao,
+            preco: evento.preco,
             ativo: evento.ativo,
+            gratuito: evento.gratuito,
+            privado: evento.privado,
+            cancelado: evento.cancelado,
             data_inicio: evento.data_inicio,
             data_fim: evento.data_fim
         }
@@ -48,10 +53,15 @@ module.exports = {
             .update({
                 name: evento.name,
                 qtd_vagas: evento.qtd_vagas,
-                descricao: evento.descricao,
                 palestrante: evento.palestrante,
-                gratuito: evento.gratuito,
+                url_imagem: evento.url_imagem,
+                detalhes: evento.detalhes,
+                descricao: evento.descricao,
+                preco: evento.preco,
                 ativo: evento.ativo,
+                gratuito: evento.gratuito,
+                privado: evento.privado,
+                cancelado: evento.cancelado,
                 data_inicio: evento.data_inicio,
                 data_fim: evento.data_fim
             });

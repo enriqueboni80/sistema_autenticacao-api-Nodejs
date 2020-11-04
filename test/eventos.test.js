@@ -9,9 +9,14 @@ test('Registrando um evento', async () => {
             "name": `Puc_teste`,
             "qtd_vagas": 20,
             "palestrante": "José da silva",
-            "gratuito": true,
-            "ativo": true,
+            "url_imagem": "http://www.terra.com.br/",
+            "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
+            "preco": 50.00,
+            "ativo": true,
+            "gratuito": false,
+            "privado": false,
+            "cancelado": false,
             "data_inicio": "2020-01-01 00:00:00",
             "data_fim": "2020-01-01 00:00:00",
             "endereco": {
@@ -34,24 +39,44 @@ test('Registrando um evento', async () => {
 test('Retornando todos os Eventos', async () => {
     await request(app).post('/eventos')
         .send({
-            "name": `Puc_teste`,
+            "name": `Puc_teste 2`,
             "qtd_vagas": 20,
             "palestrante": "José da silva",
-            "gratuito": true,
-            "ativo": true,
+            "url_imagem": "http://www.terra.com.br/",
+            "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
+            "preco": 50.00,
+            "ativo": true,
+            "gratuito": false,
+            "privado": false,
+            "cancelado": false,
             "data_inicio": "2020-01-01 00:00:00",
             "data_fim": "2020-01-01 00:00:00"
         })
         .send({
-            "name": `Puc_teste`,
-            "qtd_vagas": 50,
-            "palestrante": "Aryton Senna",
-            "gratuito": true,
-            "ativo": true,
+            "name": `Puc_teste 3`,
+            "qtd_vagas": 20,
+            "palestrante": "José da silva",
+            "url_imagem": "http://www.terra.com.br/",
+            "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
-            "data_inicio": "2020-02-02 00:00:00",
-            "data_fim": "2020-02-02 00:00:00"
+            "preco": 50.00,
+            "ativo": true,
+            "gratuito": false,
+            "privado": false,
+            "cancelado": false,
+            "data_inicio": "2020-01-01 00:00:00",
+            "data_fim": "2020-01-01 00:00:00",
+            "endereco": {
+                "rua": "Rua das Couves",
+                "numero": "500",
+                "complemento": "301",
+                "bairro": "Floresta",
+                "cidade": "Belo Horizonte",
+                "estado": "Minas Gerais",
+                "cep": "30380-000",
+                "pais": "Brasil"
+            }
         })
 
     return request(app).get('/eventos').then((res) => {
@@ -63,12 +88,17 @@ test('Retornando todos os Eventos', async () => {
 test('Atualizando Evento', async () => {
 
     let evento = {
-        "name": `Puc_teste 22222`,
+        "name": `Puc_teste 2`,
         "qtd_vagas": 20,
         "palestrante": "José da silva",
-        "gratuito": true,
-        "ativo": true,
+        "url_imagem": "http://www.terra.com.br/",
+        "detalhes": "detalhes do evento",
         "descricao": "Evento de teste",
+        "preco": 50.00,
+        "ativo": true,
+        "gratuito": false,
+        "privado": false,
+        "cancelado": false,
         "data_inicio": "2020-01-01 00:00:00",
         "data_fim": "2020-01-01 00:00:00"
     }
@@ -77,23 +107,28 @@ test('Atualizando Evento', async () => {
     return await request(app).put('/eventos/update')
         .send({
             "id": eventoId,
-            "name": `Puc_teste Atualizado xxxx`,
-            "qtd_vagas": 20,
+            "name": `Puc_teste 3 - Atualizado`,
+            "qtd_vagas": 50,
             "palestrante": "José da silva - Atualizado",
-            "gratuito": true,
+            "url_imagem": "http://www.terra.com.br/",
+            "detalhes": "detalhes do evento - Atualizado",
+            "descricao": "Evento de teste - Atualizado",
+            "preco": 50.00,
             "ativo": true,
-            "descricao": "Evento de teste",
-            "data_inicio": "2020-01-21 00:00:00",
-            "data_fim": "2020-01-21 00:00:00",
+            "gratuito": false,
+            "privado": false,
+            "cancelado": false,
+            "data_inicio": "2020-01-01 00:00:00",
+            "data_fim": "2020-01-01 00:00:00",
             "endereco": {
-                "rua": "Rua das Couves Atualizado",
-                "numero": "500 Atualizado",
-                "complemento": "301 Atualizado",
-                "bairro": "Floresta Atualizado",
-                "cidade": "Belo Horizonte Atualizado",
-                "estado": "Minas Gerais Atualizado",
-                "cep": "30380-000 Atualizado",
-                "pais": "Brasil Atualizado"
+                "rua": "Rua das Couves - Atualizado",
+                "numero": "500 - Atualizado",
+                "complemento": "301 - Atualizado",
+                "bairro": "Floresta - Atualizado",
+                "cidade": "Belo Horizonte - Atualizado",
+                "estado": "Minas Gerais - Atualizado",
+                "cep": "30380-000 - Atualizado",
+                "pais": "Brasil - Atualizado"
             }
         }).then((res) => {
             expect(res.status).toBe(200)
