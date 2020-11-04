@@ -321,6 +321,35 @@
                 },
                 "data_fim": {
                   "type": "string"
+                },
+                "endereco": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string"
+                    },
+                    "numero": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "cidade": {
+                      "type": "string"
+                    },
+                    "estado": {
+                      "type": "string"
+                    },
+                    "cep": {
+                      "type": "string"
+                    },
+                    "pais": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -415,6 +444,35 @@
                 },
                 "data_fim": {
                   "type": "string"
+                },
+                "endereco": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string"
+                    },
+                    "numero": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "cidade": {
+                      "type": "string"
+                    },
+                    "estado": {
+                      "type": "string"
+                    },
+                    "cep": {
+                      "type": "string"
+                    },
+                    "pais": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
