@@ -42,7 +42,11 @@ module.exports = {
     },
     async destroy(req, res, next) {
         let eventoId = req.params.id;
-        let evento = await Evento.getByID(eventoId)
-        res.send(`Deletar o evento (ainda não deleta no banco) - id: ${evento.id}, name:${evento.username} `);
+        try {
+            await Eventos.destroy(eventoId)
+            return res.status(200).json({ success: true, message: 'ok' });
+        } catch (error) {
+            return res.status(400).json({ success: false, message: "deu problema" });
+        }
     },
 }

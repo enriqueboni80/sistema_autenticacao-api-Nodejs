@@ -8,6 +8,6 @@ router.get('/', EventosController.index);
 router.post('/store', EventosController.store);
 router.get('/:id', EventosController.show);
 router.put('/update', EventosController.update);
-router.delete('/destroy', EventosController.destroy);
+router.delete('/:id/delete', EventosController.destroy);
 
 module.exports = router;

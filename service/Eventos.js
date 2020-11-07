@@ -30,8 +30,10 @@ module.exports = {
             .update(evento);
     },
 
-    destroy() {
-        return '';
+    destroy(id) {
+        return db(TABLE_NAME)
+        .where('id', id)
+        .del();
     },
 
     setEvento(body) {
