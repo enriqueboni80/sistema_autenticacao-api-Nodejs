@@ -8,6 +8,7 @@ exports.up = function(knex) {
         table.string('url_imagem').nullable()
         table.string('detalhes').nullable()
         table.string('descricao').nullable()
+        table.integer('categoria').default(null)
         table.float('preco').nullable()
         table.boolean('ativo').defaultTo(false).notNull()
         table.boolean('gratuito').defaultTo(true).notNull()
@@ -15,6 +16,7 @@ exports.up = function(knex) {
         table.boolean('cancelado').defaultTo(false).notNull()
         table.datetime('data_inicio').notNull()
         table.datetime('data_fim').notNull()
+        table.datetime('prazo_inscricao').nullable()
         table.timestamps(true, true)
     })
 };

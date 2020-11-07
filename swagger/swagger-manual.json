@@ -304,6 +304,9 @@
                 "descricao": {
                   "type": "string"
                 },
+                "categoria": {
+                  "type": "number"
+                },
                 "ativo": {
                   "type": "boolean"
                 },
@@ -323,6 +326,9 @@
                   "type": "string"
                 },
                 "data_fim": {
+                  "type": "string"
+                },
+                "prazo_inscricao": {
                   "type": "string"
                 },
                 "endereco": {
@@ -412,6 +418,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "id": {
+                  "type": "number"
+                },
                 "name": {
                   "type": "string"
                 },
@@ -429,6 +438,9 @@
                 },
                 "descricao": {
                   "type": "string"
+                },
+                "categoria": {
+                  "type": "number"
                 },
                 "ativo": {
                   "type": "boolean"
@@ -449,6 +461,9 @@
                   "type": "string"
                 },
                 "data_fim": {
+                  "type": "string"
+                },
+                "prazo_inscricao": {
                   "type": "string"
                 },
                 "endereco": {

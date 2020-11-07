@@ -12,6 +12,7 @@ test('Registrando um evento', async () => {
             "url_imagem": "http://www.terra.com.br/",
             "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
+            "categoria": 2,
             "preco": 50.00,
             "ativo": true,
             "gratuito": false,
@@ -19,6 +20,7 @@ test('Registrando um evento', async () => {
             "cancelado": false,
             "data_inicio": "2020-01-01 00:00:00",
             "data_fim": "2020-01-01 00:00:00",
+            "prazo_inscricao": "2019-12-01 00:00:00",
             "endereco": {
                 "rua": "Rua das Couves",
                 "numero": "500",
@@ -67,6 +69,7 @@ test('Retornando todos os Eventos', async () => {
             "cancelado": false,
             "data_inicio": "2020-01-01 00:00:00",
             "data_fim": "2020-01-01 00:00:00",
+            "prazo_inscricao": "2019-12-01 00:00:00",
             "endereco": {
                 "rua": "Rua das Couves",
                 "numero": "500",
@@ -100,7 +103,8 @@ test('Atualizando Evento', async () => {
         "privado": false,
         "cancelado": false,
         "data_inicio": "2020-01-01 00:00:00",
-        "data_fim": "2020-01-01 00:00:00"
+        "data_fim": "2020-01-01 00:00:00",
+        "prazo_inscricao": "2019-12-01 00:00:00"
     }
     let eventoId = await serviceEventos.store(evento)
 
@@ -113,6 +117,7 @@ test('Atualizando Evento', async () => {
             "url_imagem": "http://www.terra.com.br/",
             "detalhes": "detalhes do evento - Atualizado",
             "descricao": "Evento de teste - Atualizado",
+            "categoria": 5,
             "preco": 50.00,
             "ativo": true,
             "gratuito": false,
@@ -120,6 +125,7 @@ test('Atualizando Evento', async () => {
             "cancelado": false,
             "data_inicio": "2020-01-01 00:00:00",
             "data_fim": "2020-01-01 00:00:00",
+            "prazo_inscricao": "2019-12-01 00:00:00",
             "endereco": {
                 "rua": "Rua das Couves - Atualizado",
                 "numero": "500 - Atualizado",
