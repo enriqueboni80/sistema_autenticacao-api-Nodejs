@@ -1,7 +1,6 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('enderecos', table => {
-        table.increments('id').unsigned().primary()
         table.integer('user_id').nullable()
         table.integer('evento_id').nullable()
         table.string('rua').notNull()
