@@ -14,8 +14,8 @@ module.exports = {
                 await Endereco.create(req.body)
             }
             return res.status(201).json({ success: true, eventoId: evento_id, message: 'ok' });
-        } catch (errors) {
-            return res.status(400).json({ errors: errors.message })
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
         }
     },
     async show(req, res, next) {
