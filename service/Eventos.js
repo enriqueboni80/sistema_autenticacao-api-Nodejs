@@ -32,8 +32,8 @@ module.exports = {
 
     destroy(id) {
         return db(TABLE_NAME)
-        .where('id', id)
-        .del();
+            .where('id', id)
+            .del();
     },
 
     setEvento(body) {
@@ -58,14 +58,30 @@ module.exports = {
 
 
     validate(evento) {
-        if (evento.name === undefined || evento.name === '') throw new Error("name é um atributo obrigatório")
-        if (evento.qtd_vagas === undefined || evento.qtd_vagas === '') throw new Error("quantidade de Vagas é um atributo obrigatório")
-        if (evento.palestrante === undefined || evento.palestrante === '') throw new Error("palestrante é um atributo obrigatório")
-        if (evento.gratuito === undefined || evento.gratuito === '') throw new Error("gratuito é um atributo obrigatório")
-        if (evento.ativo === undefined || evento.ativo === '') throw new Error("ativo é um atributo obrigatório")
-        if (evento.descricao === undefined || evento.descricao === '') throw new Error("descricao é um atributo obrigatório")
-        if (evento.data_inicio === undefined || evento.data_inicio === '') throw new Error("data_inicio é um atributo obrigatório")
-        if (evento.data_fim === undefined || evento.data_fim === '') throw new Error("data_fim é um atributo obrigatório")
+        
+        let errors = []
+        
+        if (evento.name === undefined || evento.name === '')
+            errors = [...errors, {property: 'name', "message": "Campo name é obrigatório"}]    
+        if (evento.qtd_vagas === undefined || evento.qtd_vagas === '')
+            errors = [...errors, {property: 'qtd_vagas', "message": "Campo qtd_vagas é obrigatório"}] 
+        if (evento.palestrante === undefined || evento.palestrante === '')
+            errors = [...errors, {property: 'palestrante', "message": "Campo palestrante é obrigatório"}]
+        if (evento.gratuito === undefined || evento.gratuito === '')
+            errors = [...errors, {property: 'gratuito', "message": "Campo gratuito é obrigatório"}]
+        if (evento.ativo === undefined || evento.ativo === '')
+            errors = [...errors, {property: 'ativo', "message": "Campo ativo é obrigatório"}]
+        if (evento.descricao === undefined || evento.descricao === '')
+            errors = [...errors, {property: 'descricao', "message": "Campo descricao é obrigatório"}]
+        if (evento.data_inicio === undefined || evento.data_inicio === '')
+            errors = [...errors, {property: 'data_inicio', "message": "Campo data_inicio é obrigatório"}]
+        if (evento.data_fim === undefined || evento.data_fim === '')
+            errors = [...errors, {property: 'data_fim', "message": "Campo data_fim é obrigatório"}]
+
+        if (errors.length > 0) {
+            throw new Error(errors)
+        }
+
     }
 
 }
