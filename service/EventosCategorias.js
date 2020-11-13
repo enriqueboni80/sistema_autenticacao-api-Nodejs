@@ -4,7 +4,7 @@ const knexConfigs = require('../knexfile')
 const Util = require('../helpers/Util');
 const db = knex(knexConfigs[process.env.NODE_ENV])
 
-const TABLE_NAME = 'categorias_eventos'
+const TABLE_NAME = 'eventos_categorias'
 
 module.exports = {
 

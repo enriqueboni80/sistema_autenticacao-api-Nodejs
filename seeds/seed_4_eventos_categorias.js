@@ -1,10 +1,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('categorias_eventos').del()
+  return knex('eventos_categorias').del()
     .then(function () {
       // Inserts seed entries
-      return knex('categorias_eventos').insert([
+      return knex('eventos_categorias').insert([
         {id: 1, name: 'Eventos OnLine'},
         {id: 2, name: 'Festas e Shows'},
         {id: 3, name: 'Teatros e Espetáculos'},

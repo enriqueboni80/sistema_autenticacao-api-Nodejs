@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.createTable('categorias_eventos', table => {
+    return knex.schema.createTable('eventos_categorias', table => {
         table.integer('id').unsigned().primary()
         table.string('name')
         table.timestamps(true, true)
@@ -7,5 +7,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('categorias_eventos')
+    return knex.schema.dropTableIfExists('eventos_categorias')
 };
