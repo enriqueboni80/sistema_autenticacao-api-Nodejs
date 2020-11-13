@@ -8,6 +8,7 @@ var loginRouter = require('./routes/Auth/login');
 var logoutRouter = require('./routes/Auth/logout');
 var toolsRouter = require('./routes/tools');
 var eventosRouter = require('./routes/eventos');
+var eventosCategoriasRouter = require('./routes/eventos-categorias');
 
 module.exports = (app) => {
 
@@ -29,4 +30,5 @@ module.exports = (app) => {
     app.use(`${$apiUrl}/auth/login`, loginRouter);
     app.use(`${$apiUrl}/auth/logout`, logoutRouter);
     app.use(`${$apiUrl}/eventos`, eventosRouter);
+    app.use(`${$apiUrl}/eventos-categorias`, eventosCategoriasRouter);
 }
