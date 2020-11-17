@@ -46,7 +46,7 @@ module.exports = {
             descricao: body.descricao,
             categoria: body.categoria,
             preco: body.preco,
-            ativo: body.ativo,
+            publicado: body.publicado,
             gratuito: body.gratuito,
             privado: body.privado,
             cancelado: body.cancelado,
@@ -62,7 +62,7 @@ module.exports = {
         if (evento.qtd_vagas === undefined || evento.qtd_vagas === '') throw new Error("quantidade de Vagas é um atributo obrigatório")
         if (evento.palestrante === undefined || evento.palestrante === '') throw new Error("palestrante é um atributo obrigatório")
         if (evento.gratuito === undefined || evento.gratuito === '') throw new Error("gratuito é um atributo obrigatório")
-        if (evento.ativo === undefined || evento.ativo === '') throw new Error("ativo é um atributo obrigatório")
+        if (evento.publicado === undefined || evento.publicado === '') throw new Error("publicado é um atributo obrigatório")
         if (evento.descricao === undefined || evento.descricao === '') throw new Error("descricao é um atributo obrigatório")
         if (evento.data_inicio === undefined || evento.data_inicio === '') throw new Error("data_inicio é um atributo obrigatório")
         if (evento.data_fim === undefined || evento.data_fim === '') throw new Error("data_fim é um atributo obrigatório")

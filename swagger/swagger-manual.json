@@ -307,7 +307,7 @@
                 "categoria": {
                   "type": "number"
                 },
-                "ativo": {
+                "publicado": {
                   "type": "boolean"
                 },
                 "gratuito": {
@@ -442,7 +442,7 @@
                 "categoria": {
                   "type": "number"
                 },
-                "ativo": {
+                "publicado": {
                   "type": "boolean"
                 },
                 "gratuito": {

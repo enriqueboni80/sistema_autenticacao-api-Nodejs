@@ -10,7 +10,7 @@ exports.up = function(knex) {
         table.string('descricao').nullable()
         table.integer('categoria').default(null)
         table.float('preco').nullable()
-        table.boolean('ativo').defaultTo(false).notNull()
+        table.boolean('publicado').defaultTo(false).notNull()
         table.boolean('gratuito').defaultTo(true).notNull()
         table.boolean('privado').defaultTo(false).notNull()
         table.boolean('cancelado').defaultTo(false).notNull()
