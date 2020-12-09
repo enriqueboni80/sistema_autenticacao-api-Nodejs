@@ -33,6 +33,7 @@ module.exports = {
                         success: true,
                         mensagem: "AUTENTICADO COM SUCESSO",
                         user: {
+                            id: user.id,
                             username: user.username,
                             email: user.email,
                             active: user.active,

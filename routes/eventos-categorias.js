@@ -4,6 +4,6 @@ var EventosCategoriasController = require('../controllers/EventosCategoriasContr
 var auth = require('../middlewares/ensureAuthenticated')
 
 /* CATEGORIAS ROUTES */
-router.get('/', EventosCategoriasController.index);
+router.post('/', EventosCategoriasController.index);
 
 module.exports = router;
