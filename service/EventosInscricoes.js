@@ -19,4 +19,11 @@ module.exports = {
             .leftJoin('users', `${TABLE_NAME}.user_id`, 'users.id')
             .where('evento_id', idEvento)
     },
+
+    getInscricoesByUserId(idUser) {
+        return db(TABLE_NAME)
+            .select('*')
+            .leftJoin('users', `${TABLE_NAME}.user_id`, 'users.id')
+            .where('user_id', idUser)
+    },
 }
