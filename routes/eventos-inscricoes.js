@@ -5,5 +5,6 @@ var auth = require('../middlewares/ensureAuthenticated')
 
 /* USERS ROUTES */
 router.post('/', EventosInscricoesController.index);
+router.get('/:eventoId', EventosInscricoesController.getInscritosByEventoId);
 
 module.exports = router;
