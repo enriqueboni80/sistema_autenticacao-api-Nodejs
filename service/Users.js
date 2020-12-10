@@ -65,7 +65,7 @@ module.exports = {
             created_at: util.getNow()
         }
 
-        return db(TABLE_NAME).insert(_user);
+        return (await db(TABLE_NAME).insert(_user).returning('id')).toString();
     },
 
     validate(id) {
