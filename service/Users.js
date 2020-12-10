@@ -48,7 +48,7 @@ module.exports = {
         const regexEmail = new RegExp(/^([\w\+\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/)
         if (!regexEmail.test(user.email)) throw new Error("Email não corresponde ao regex")
 
-        const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã.\d]{7,}$/);
+        const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã@!.\d]{7,}$/);
         if (!regxPassword.test(user.password)) throw new Error("Password não corresponde ao regex")
 
 
