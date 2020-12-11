@@ -13,6 +13,13 @@ module.exports = {
         return db(TABLE_NAME).insert({ 'evento_id': idEvento, 'user_id': idUsuario })
     },
 
+    desinscrever(idEvento, idUsuario) {
+        return db(TABLE_NAME)
+        .where('evento_id',idEvento)
+        .where('user_id',idUsuario)
+        .del()
+    },
+
     getInscritosByEventoId(idEvento) {
         return db(TABLE_NAME)
             .select('*')
