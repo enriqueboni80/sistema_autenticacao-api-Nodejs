@@ -31,6 +31,9 @@ module.exports = {
         return db(TABLE_NAME)
             .select('*')
             .leftJoin('users', `${TABLE_NAME}.user_id`, 'users.id')
+            .leftJoin('eventos', `${TABLE_NAME}.evento_id`, 'eventos.id')
             .where('user_id', idUser)
     },
 }
+
+return db(TABLE_NAME).select('*').leftJoin('enderecos', `${TABLE_NAME}.id`, 'enderecos.evento_id')
