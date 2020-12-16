@@ -14,9 +14,9 @@ exports.up = function(knex) {
         table.boolean('gratuito').defaultTo(true).notNull()
         table.boolean('privado').defaultTo(false).notNull()
         table.boolean('cancelado').defaultTo(false).notNull()
-        table.timestamp('data_inicio').notNull()
-        table.timestamp('data_fim').notNull()
-        table.timestamp('prazo_inscricao').nullable()
+        table.timestamp('data_inicio',{ useTz: true }).notNull()
+        table.timestamp('data_fim',{ useTz: true }).notNull()
+        table.timestamp('prazo_inscricao',{ useTz: true }).nullable()
         table.timestamps(true, true)
     })
 };
