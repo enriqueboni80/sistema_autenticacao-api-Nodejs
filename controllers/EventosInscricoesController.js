@@ -48,5 +48,16 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({ error: error.message })
         }
+    },
+
+    async estevePresente(req, res){
+        try {
+            await EventosInscricoes.estevePresente(req.body.evento_id, req.body.user_id)
+            return res.status(201).json({ success: true, message: 'ok' });
+        } catch (error) {
+            return res.status(400).json({ error: error.message })
+        }
     }
+
+
 }

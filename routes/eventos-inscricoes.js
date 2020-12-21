@@ -9,5 +9,6 @@ router.post('/', EventosInscricoesController.inscrever);
 router.post('/desinscrever', EventosInscricoesController.desinscrever);
 router.get('/:eventoId', EventosInscricoesController.getInscritosByEventoId);
 router.get('/:userId/user', EventosInscricoesController.getInscricoesByUserId);
+router.post('/esteve-presente', EventosInscricoesController.estevePresente);
 
 module.exports = router;
