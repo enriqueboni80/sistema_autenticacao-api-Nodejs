@@ -22,7 +22,7 @@ var enrique = {
 }
 
 var pucUsuario1 = {
-  username: 'Pucminas - usuario 1',
+  username: 'usuario 1',
   email: 'usuario1@pucminas.br',
   password: '$2a$08$05CoLs9y73wOo5sQwTmie.YVPr249TZJ.0M294qfoCua1zzzyKTCq',
   activation_token: 'ph6le9apbfqbnl3dxrk8t9',
@@ -32,7 +32,7 @@ var pucUsuario1 = {
 }
 
 var pucUsuario2 = {
-  username: 'Pucminas - usuario 2',
+  username: 'usuario 2',
   email: 'usuario2@pucminas.br',
   password: '$2a$08$05CoLs9y73wOo5sQwTmie.YVPr249TZJ.0M294qfoCua1zzzyKTCq',
   activation_token: 'ph6le9apbfqbnl3dxrk8t9',

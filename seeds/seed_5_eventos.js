@@ -1,5 +1,5 @@
 var evento1 = {
-  "name": `Como fazer amigos e influênciar pessoas`,
+  "name": `Como fazer amigos e influenciar pessoas`,
   "qtd_vagas": 100,
   "palestrante": "Dale Carnegie",
   "url_imagem": "https://www.selecoes.com.br/wp-content/uploads/2019/05/happy-women-hugging-each-other-picture-id929930552-760x450.jpg",
