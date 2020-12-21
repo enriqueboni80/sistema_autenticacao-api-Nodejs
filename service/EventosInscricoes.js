@@ -26,7 +26,7 @@ module.exports = {
 
     getInscritosByEventoId(idEvento) {
         return db(TABLE_NAME)
-            .select('*')
+            .select(['*', `${TABLE_NAME}.created_at as data_inscricao`])
             .leftJoin('users', `${TABLE_NAME}.user_id`, 'users.id')
             .where('evento_id', idEvento)
     },
