@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Ligando Rotas - Obs: Configuração do Cors esta aqui dentro
+//Ligando Rotas - Obs: Configuração do CORS esta aqui dentro
 initializeRoutes(app)
 
 //SwaggerDoc tem que vir depois das rotas

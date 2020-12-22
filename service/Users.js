@@ -48,7 +48,7 @@ module.exports = {
         const regexEmail = new RegExp(/^([\w\+\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/)
         if (!regexEmail.test(user.email)) throw new Error("Email não corresponde ao regex")
 
-        const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã.\d]{7,}$/);
+        const regxPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Zçã@!.\d]{7,}$/);
         if (!regxPassword.test(user.password)) throw new Error("Password não corresponde ao regex")
 
 
@@ -65,7 +65,7 @@ module.exports = {
             created_at: util.getNow()
         }
 
-        return db(TABLE_NAME).insert(_user);
+        return (await db(TABLE_NAME).insert(_user).returning('id')).toString();
     },
 
     validate(id) {
@@ -96,7 +96,7 @@ module.exports = {
 
     update(user) {
         return db(TABLE_NAME)
-            .where('id', user.id)
+            .where('id', user.user_id)
             .update({
                 username: user.username,
                 email: user.email,

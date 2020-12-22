@@ -23,6 +23,13 @@ user: admin@admin.com
 password: Admin123
 
 
+##### USUARIO DE TESTE
+user: usuario1@pucminas.br
+password: Puc@123!
+
+user: usuario2@pucminas.br
+password: Puc@123!
+
 
 
 

@@ -42,13 +42,23 @@ test('Atualizando usuario : Atualizando e Criando um Endereço', async () => {
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
-            "endereco": { "rua": "Rua das Couves" }
+            "endereco": { 
+                "user_id": user.id,
+                "rua": "Rua das Couves",
+                "numero": "500",
+                "complemento": "301",
+                "bairro": "Floresta",
+                "cidade": "Belo Horizonte",
+                "estado": "Minas Gerais",
+                "cep": "30380-000",
+                "pais": "Brasil"
+            }
         })
         .then((res) => {
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('success', true)
         })
-});
+}); 
 
 
 test('Atualizando usuario : Atualizando Endereço', async () => {
@@ -60,7 +70,17 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
-            "endereco": { "rua": "Rua das Couves" }
+            "endereco": { 
+                "user_id": user.id,
+                "rua": "Rua das Couves",
+                "numero": "500",
+                "complemento": "301",
+                "bairro": "Floresta",
+                "cidade": "Belo Horizonte",
+                "estado": "Minas Gerais",
+                "cep": "30380-000",
+                "pais": "Brasil"
+            }
         })
 
     return request(app).put('/users')
@@ -69,7 +89,17 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
             "username": "enrique_atualizado",
             "password": "Abc123.....!!!",
             "email": `enriqueboni80_atualizado+${Date.now()}@gmail.com`,
-            "endereco": { "rua": "Rua das Couves_2" }
+            "endereco": { 
+                "user_id": user.id,
+                "rua": "Rua das Couves Atualizado",
+                "numero": "500 Atualizado",
+                "complemento": "301 Atualizado",
+                "bairro": "Floresta Atualizado",
+                "cidade": "Belo Horizonte Atualizado",
+                "estado": "Minas Gerais Atualizado",
+                "cep": "30380-000 Atualizado",
+                "pais": "Brasil Atualizado"
+            }
         })
         .then((res) => {
             expect(res.status).toBe(200)

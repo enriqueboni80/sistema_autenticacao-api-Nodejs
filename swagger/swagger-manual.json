@@ -55,7 +55,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/register/validate": {
@@ -83,7 +87,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/register/checkemailfree": {
@@ -108,7 +116,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/login": {
@@ -136,7 +148,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/forgot-password": {
@@ -161,7 +177,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/forgot-password/reset": {
@@ -192,7 +212,11 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
       }
     },
     "/auth/logout": {
@@ -214,7 +238,272 @@
             "schema": {}
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
+      }
+    },
+    "/eventos": {
+      "get": {
+        "tags": [
+          "Eventos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Eventos",
+            "description": "Pegar todos os eventos",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
+      }
+    },
+    "/eventos/store": {
+      "post": {
+        "tags": [
+          "Eventos"
+        ],
+        "description": "",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "qtd_vagas": {
+                  "type": "number"
+                },
+                "palestrante": {
+                  "type": "string"
+                },
+                "url_imagem": {
+                  "type": "string"
+                },
+                "detalhes": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
+                },
+                "categoria": {
+                  "type": "number"
+                },
+                "publicado": {
+                  "type": "boolean"
+                },
+                "gratuito": {
+                  "type": "boolean"
+                },
+                "preco": {
+                  "type": "number"
+                },
+                "privado": {
+                  "type": "boolean"
+                },
+                "cancelado": {
+                  "type": "boolean"
+                },
+                "data_inicio": {
+                  "type": "string"
+                },
+                "data_fim": {
+                  "type": "string"
+                },
+                "prazo_inscricao": {
+                  "type": "string"
+                },
+                "endereco": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string"
+                    },
+                    "numero": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "cidade": {
+                      "type": "string"
+                    },
+                    "estado": {
+                      "type": "string"
+                    },
+                    "cep": {
+                      "type": "string"
+                    },
+                    "pais": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
+      }
+    },
+    "/eventos/{id}": {
+      "get": {
+        "tags": [
+          "Eventos"
+        ],
+        "description": "recuperar um evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do evento",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar um evento"
+          }
+        }
+      }
+    },
+    "/eventos/update": {
+      "put": {
+        "tags": [
+          "Eventos"
+        ],
+        "description": "Atualizar os dados de um evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "qtd_vagas": {
+                  "type": "number"
+                },
+                "palestrante": {
+                  "type": "string"
+                },
+                "url_imagem": {
+                  "type": "string"
+                },
+                "detalhes": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
+                },
+                "categoria": {
+                  "type": "number"
+                },
+                "publicado": {
+                  "type": "boolean"
+                },
+                "gratuito": {
+                  "type": "boolean"
+                },
+                "preco": {
+                  "type": "number"
+                },
+                "privado": {
+                  "type": "boolean"
+                },
+                "cancelado": {
+                  "type": "boolean"
+                },
+                "data_inicio": {
+                  "type": "string"
+                },
+                "data_fim": {
+                  "type": "string"
+                },
+                "prazo_inscricao": {
+                  "type": "string"
+                },
+                "endereco": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string"
+                    },
+                    "numero": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "cidade": {
+                      "type": "string"
+                    },
+                    "estado": {
+                      "type": "string"
+                    },
+                    "cep": {
+                      "type": "string"
+                    },
+                    "pais": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar um evento"
+          }
+        }
       }
     }
   },
