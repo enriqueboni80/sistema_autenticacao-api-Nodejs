@@ -7,7 +7,7 @@ exports.up = function(knex) {
         table.string('palestrante').notNull()
         table.string('url_imagem').nullable()
         table.string('detalhes').nullable()
-        table.string('descricao').nullable()
+        table.string('descricao', 7000).nullable()
         table.integer('categoria').default(null)
         table.float('preco').nullable()
         table.boolean('publicado').defaultTo(false).notNull()
