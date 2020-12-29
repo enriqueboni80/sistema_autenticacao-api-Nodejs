@@ -25,7 +25,8 @@ var evento1 = {
   "cancelado": false,
   "data_inicio": "2021-01-11 08:00:00",
   "data_fim": "2021-01-15 20:00:00",
-  "prazo_inscricao": "2021-01-01 20:00:00"
+  "prazo_inscricao": "2021-01-01 20:00:00",
+  "tel_contato": '(11) 9999-9999'
 }
 
 var evento2 = {
@@ -57,7 +58,8 @@ var evento2 = {
   "cancelado": false,
   "data_inicio": "2021-06-12 08:00:00",
   "data_fim": "2021-06-12 16:00:00",
-  "prazo_inscricao": "2021-06-10 00:00:00"
+  "prazo_inscricao": "2021-06-10 00:00:00",
+  "tel_contato": '(11) 9999-9999'
 }
 
 var evento3 = {
@@ -92,7 +94,8 @@ var evento3 = {
   "cancelado": false,
   "data_inicio": "2021-03-10 08:00:00",
   "data_fim": "2021-03-12 20:00:00",
-  "prazo_inscricao": "2021-03-01 10:00:00"
+  "prazo_inscricao": "2021-03-01 10:00:00",
+  "tel_contato": '(11) 9999-9999'
 }
 
 
