@@ -16,7 +16,13 @@ var evento1 = {
   <p>Conforme emprega os princípios de Dale Carnegie, você se tornará um líder excelente enquanto conquista a confiança e o 
   respeito das pessoas ao seu redor. Construa a mudança positiva inspirando uma força de trabalho de excelência e com recursos diversos. 
   Ao conquistar as pessoas para sua forma de pensar e reduzir o estresse, você vai colocar as equipes em movimento e ajudar organizações 
-  inteiras a atingir novos patamares.</p>`,
+  inteiras a atingir novos patamares.</p>
+  <p><br></p><p><br></p>
+  <div class="se-component se-video-container __se__float-none" contenteditable="false">
+  <figure style="height: 256px; padding-bottom: 256px;">
+  <iframe src="https://www.youtube.com/embed/SSn7rXiC-n4" data-proportion="true" data-size="455px,256px" data-align="none" data-file-name="SSn7rXiC-n4" data-file-size="0" data-origin="100%,56.25%" data-index="0" style="width: 455px; height: 256px;"></iframe>
+  </figure>
+  </div>`,
   "categoria": 5,
   "preco": 50.00,
   "publicado": true,
@@ -35,7 +41,9 @@ var evento2 = {
   "palestrante": "Ayrton Senna",
   "url_imagem": "https://s.ebiografia.com/img/se/nn/senna_tricampea_o_655_x_425.jpg",
   "detalhes": "Evento para esportistas",
-  "descricao": `<p>​<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, sans-serif; font-size: 15.21px; font-weight: 700;">  
+  "descricao": `
+  <p><br></p>
+  <p>​<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, sans-serif; font-size: 15.21px; font-weight: 700;">  
   DESCRIÇÃO</span>​<br>
   </p><p><br></p>
   <p>Começo de tudo</p>
@@ -49,7 +57,11 @@ var evento2 = {
   <p><br></p><p>Primeiras vitórias</p>
   <p><br></p>
   <p>​1985 Equipe Lotus:<br>21/04, GP de Portugal, circuito do Estoril<br>15/09, GP da Bélgica, circuito de Spa-Francorchamps<br><br>
-  <br></p><p><br></p>`,
+  <p><br></p><p><br></p>
+  <div class="se-component se-video-container __se__float-center" contenteditable="false">
+  <figure style="height: 211px; padding-bottom: 211px;">
+  <iframe src="https://www.youtube.com/embed/bbqBPABtrxE" data-proportion="true" data-align="center" data-size="374px,211px" data-file-name="bbqBPABtrxE" data-file-size="0" data-origin="100%,56.25%" data-rotate="" data-index="0" style="width: 374px; height: 211px;"></iframe>
+  </figure></div>`,
   "categoria": 5,
   "preco": 50.00,
   "publicado": true,
@@ -85,7 +97,12 @@ var evento3 = {
   initial; text-decoration-color: initial; display: inline !important; float: none;"><br>
   </span></p><p><span style="color: rgb(153, 153, 153); font-family: Poppins, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(248, 249, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Os temas da Semana de Inovação, Tecnologia e Empreendedorismo (SITE) tem relação com tudo aquilo que transforma padrões já estabelecidos, seja uma ideia, método produtivo ou objeto. Inovações tecnológicas servem para melhorar a competitividade das empresas aumentando o valor agregado, podendo envolver pequenos esforços que propiciam melhoria de produtos ou na eficiência de processos ou, também, pode promover uma melhor racionalização de recursos naturais.</span>​<br>
   </p><p><br></p><p>​<span style="color: rgb(153, 153, 153); font-family: Poppins, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(248, 249, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Quanto a produtos, a inovação consiste em alterações nas suas características ou uso. Já em serviços, pode ocorrer a quebra de paradigmas como aconteceu recentemente com transportes e hospedagem. Com relação a processos, é possível ressaltar mudanças como a manufatura aditiva (impressão 3D) e os novos conceitos introduzidos pela Indústria 4.0 ou quarta revolução industrial. A inovação está presente nas mais diversas áreas do conhecimento como comunicação, marketing, turismo, psicologia, medicina, engenharia, direito, administração, dentre outras.</span>​<br>
-  </p>`,
+  </p><p><br></p><p><br></p>
+  <div class="se-component se-video-container __se__float-center" contenteditable="false">
+  <figure style="height: 216px; padding-bottom: 216px;">
+  <iframe src="https://www.youtube.com/embed/6lz4TuA540U" data-proportion="true" data-align="center" data-size="383px,216px" data-file-name="6lz4TuA540U" data-file-size="0" data-origin="100%,56.25%" data-index="0" style="width: 383px; height: 216px;"></iframe>
+  </figure>
+  </div>`,
   "categoria": 5,
   "preco": 50.00,
   "publicado": true,
@@ -123,7 +140,13 @@ var evento4 = {
   <p><br></p><p>A programação prevê também a realização de exposições, feirinha de artes e comida, shows musicais, dentre outras atrações.</p>
   <p><br></p>
   <p>A programação completa do evento está disponível no site<span>&nbsp;</span><a href="http://pucminas.br/scap/2017"><span style="box-sizing: 
-  border-box; text-decoration: underline;">pucminas.br/scap</span></a></p>`,
+  border-box; text-decoration: underline;">pucminas.br/scap</span></a></p>
+  <div class="se-component se-image-container __se__float-none" contenteditable="false">
+  <p><br></p><p><br></p>
+  <figure>
+  <img src="https://kdfrases.com/frases-imagens/frase-o-primeiro-agora-sera-o-ultimo-mais-tarde-pois-os-tempos-eles-estao-mudando-bob-dylan-94472.jpg" data-rotate="" data-proportion="true" data-size="464px,218px" data-align="none" data-file-name="frase-o-primeiro-agora-sera-o-ultimo-mais-tarde-pois-os-tempos-eles-estao-mudando-bob-dylan-94472.jpg" data-file-size="0" data-origin="," origin-size="850,400" data-index="0" style="width: 464px; height: 218px;">
+  </figure>
+  </div>`,
   "categoria": 5,
   "preco": 50.00,
   "publicado": true,
