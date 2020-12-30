@@ -1,8 +1,8 @@
 var evento1 = {
-  "name": `Como fazer amigos e influenciar pessoas`,
+  "name": `Curso de Oratória`,
   "qtd_vagas": 100,
   "palestrante": "Dale Carnegie",
-  "url_imagem": "https://www.selecoes.com.br/wp-content/uploads/2019/05/happy-women-hugging-each-other-picture-id929930552-760x450.jpg",
+  "url_imagem": "https://hoje.unisul.br/wp-content/uploads/2016/09/Curso-de-Orat%C3%B3ria-em-Bra%C3%A7o-do-Norte-com-inscri%C3%A7%C3%B5es-abertas-at%C3%A9-19-de-10.png",
   "detalhes": "Evento voltado para o publico da Pucminas",
   "descricao": `<p><span style="font-size: 1.5em; font-weight: 700;">O que você irá aprender</span><br>
   </p><p>Princípios de &quot;Como fazer amigos e influenciar pessoas&quot; mostram a você como influenciar os outros para apoiarem sua visão. 
@@ -98,12 +98,49 @@ var evento3 = {
   "tel_contato": '(11) 9999-9999'
 }
 
+var evento4 = {
+  "name": `Os tempos estão mudando`,
+  "qtd_vagas": 200,
+  "palestrante": "Professor Xingu",
+  "url_imagem": "https://www.pucminas.br/unidade/sao-gabriel/sala-imprensa/noticias/PublishingImages/Paginas/Forms/AllItems/cartaz_scap_final.jpg",
+  "detalhes": "Evento acadêmico",
+  "descricao": `<p><br></p>
+  <p>De 4 a 6 de setembro a PUC Minas São Gabriel realiza a 9ª Semana de Ciência, Arte e Política com a temática<span>&nbsp;</span><em>
+  Porque os tempos estão mudando</em>. O nome do evento foi inspirado em música de Bob Dylan, que em 1964 já cantava as mudanças do mundo. 
+  As discussões abordarão as transformações na política e no país e na vida social, as transformações ocorridas a partir do uso das tecnologias da informação, 
+  pela influência das mídias e das novas plataformas de comunicação no entendimento de mundo e no acesso e universalização da informação, possibilitando 
+  o fenômeno da pós-verdade. Os temas questionam os novos tempos, como estas transformações afetam nossas vidas e como nosso modo de vida influencia o mundo.</p>
+  <p><br></p>
+  <p>No sábado, 2 de setembro, o cortejo de abertura do evento circula pela ruas do bairro São Gabriel convidando a comunidade a participar do evento 
+  que tem todas as atividades gratuitas e abertas ao público externo. Também no dia 2 de setembro acontece o projeto Tenda da Leitura, na praça Zoli Franca, 
+  localizada próximo à Unidade São Gabriel. O projeto tem o objetivo de estimular a leitura por meio da troca de livros, doações de obras literárias, 
+  contação de histórias e outras atividades.</p><p><br>
+  </p><p>As conferências acontecerão nos turnos manhã e noite. A conferência de abertura,<span>&nbsp;</span><em>Mutações Contemporâneas</em>, 
+  será ministrada pelo filósofo Peter Pál Pelbart no dia 4 de setembro, às 19h30, no teatro da PUC Minas São Gabriel.<br>
+  Durante os três dias de evento acontecem 14 oficinas de extensão ofertadas gratuitamente para a comunidade. Elas serão realizadas na Unidade 
+  São Gabriel e em entidades parceiras como o Ceduc Virgílio Resi e a Paróquia Nossa Senhora da Anunciação. Interessados em participar podem se 
+  inscrever pelo telefone (31) 3439-5270.</p>
+  <p><br></p><p>A programação prevê também a realização de exposições, feirinha de artes e comida, shows musicais, dentre outras atrações.</p>
+  <p><br></p>
+  <p>A programação completa do evento está disponível no site<span>&nbsp;</span><a href="http://pucminas.br/scap/2017"><span style="box-sizing: 
+  border-box; text-decoration: underline;">pucminas.br/scap</span></a></p>`,
+  "categoria": 5,
+  "preco": 50.00,
+  "publicado": true,
+  "gratuito": false,
+  "privado": false,
+  "cancelado": false,
+  "data_inicio": "2021-03-10 08:00:00",
+  "data_fim": "2021-03-12 20:00:00",
+  "prazo_inscricao": "2021-03-01 10:00:00",
+  "tel_contato": '(11) 9999-9999'
+}
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('eventos').del()
     .then(function () {
       // Inserts seed entries
-      return knex('eventos').insert([evento1, evento2, evento3]);
+      return knex('eventos').insert([evento1, evento2, evento3, evento4]);
     });
 };
