@@ -15,17 +15,20 @@ module.exports = {
     },
 
     test: {
-        client: 'sqlite3',
+        client: 'postgresql',
         connection: {
-            filename: './sqlite-test.db'
+            host: process.env.POSTGRES_DATABASE_URL_TEST,
+            port: process.env.POSTGRES_DATABASE_PORT_TEST,
+            database: process.env.POSTGRES_DATABASE_DATABASE_TEST,
+            user: process.env.POSTGRES_DATABASE_USER_TEST,
+            password: process.env.POSTGRES_DATABASE_PASSWORD_TEST
         },
-        useNullAsDefault: true,
+        pool: {
+            min: 2,
+            max: 10
+        },
         migrations: {
-            tableName: "knex_migrations",
-            directory: './migrations'
-        },
-        seeds: {
-            directory: './seeds'
+            tableName: 'knex_migrations'
         }
     },
 
