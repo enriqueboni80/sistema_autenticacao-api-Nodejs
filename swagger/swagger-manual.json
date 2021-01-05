@@ -646,6 +646,188 @@
           }
         }
       }
+    },
+    "/eventos-categorias": {
+      "get": {
+        "tags": [
+          "Categoria de Eventos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Eventos",
+            "description": "Retorna todas as categorias",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna todas as categorias"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes": {
+      "get": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Inscricoes",
+            "description": "Retorna todas as categorias",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna todas as categorias"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes/": {
+      "post": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "Inscreve usuario no evento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evento_id": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grava usuario"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes/desinscrever": {
+      "post": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "Desinscreve usuario no evento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evento_id": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Desiscreve usuario"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes/{eventoId}": {
+      "get": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "recuperar inscritos de um determinado evento",
+        "parameters": [
+          {
+            "name": "eventoId",
+            "in": "path",
+            "description": "ID do evento",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar um evento"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes/{userId}/user": {
+      "get": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "recuperar inscritos de um determinado evento",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuario",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar um evento"
+          }
+        }
+      }
+    },
+    "/eventos-inscricoes/esteve-presente": {
+      "post": {
+        "tags": [
+          "Inscricoes"
+        ],
+        "description": "Marca presenca para o usuario no evento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evento_id": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar um evento"
+          }
+        }
+      }
     }
   },
   "definitions": {}
