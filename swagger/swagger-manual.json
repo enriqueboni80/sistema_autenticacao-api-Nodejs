@@ -71,7 +71,7 @@
           {
             "in": "body",
             "name": "Activation Token",
-            "description": "Rota para validar o token do usuário",
+            "description": "Rota para validar o token do usuário (token enviado para o email)",
             "required": true,
             "schema": {
               "type": "object",
@@ -244,6 +244,153 @@
         }
       }
     },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Users",
+            "description": "Retorna todos os usuarios",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
+      }
+    },
+    "/users/store": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Grava os usuarios",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grava usuario"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "recuperar um usuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuario",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "retorna um usuario"
+          }
+        }
+      }
+    },
+    "/users/update": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Atualiza um usuario",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "endereco": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string"
+                    },
+                    "numero": {
+                      "type": "string"
+                    },
+                    "complemento": {
+                      "type": "string"
+                    },
+                    "bairro": {
+                      "type": "string"
+                    },
+                    "cidade": {
+                      "type": "string"
+                    },
+                    "estado": {
+                      "type": "string"
+                    },
+                    "cep": {
+                      "type": "string"
+                    },
+                    "pais": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update do usuario"
+          }
+        }
+      }
+    },
     "/eventos": {
       "get": {
         "tags": [
@@ -322,13 +469,13 @@
                   "type": "boolean"
                 },
                 "data_inicio": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "data_fim": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "prazo_inscricao": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "endereco": {
                   "type": "object",
@@ -376,11 +523,6 @@
           "Eventos"
         ],
         "description": "recuperar um evento",
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
         "parameters": [
           {
             "name": "id",
@@ -457,13 +599,13 @@
                   "type": "boolean"
                 },
                 "data_inicio": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "data_fim": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "prazo_inscricao": {
-                  "type": "string"
+                  "type": "date-time"
                 },
                 "endereco": {
                   "type": "object",
