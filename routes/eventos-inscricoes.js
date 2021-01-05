@@ -5,7 +5,7 @@ var auth = require('../middlewares/ensureAuthenticated')
 
 /* USERS ROUTES */
 router.get('/', EventosInscricoesController.index);
-router.post('/', EventosInscricoesController.inscrever);
+router.post('/inscrever', EventosInscricoesController.inscrever);
 router.post('/desinscrever', EventosInscricoesController.desinscrever);
 router.get('/:eventoId', EventosInscricoesController.getInscritosByEventoId);
 router.get('/:userId/user', EventosInscricoesController.getInscricoesByUserId);

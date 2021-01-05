@@ -689,7 +689,7 @@
         }
       }
     },
-    "/eventos-inscricoes/": {
+    "/eventos-inscricoes/inscrever": {
       "post": {
         "tags": [
           "Inscricoes"
