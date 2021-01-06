@@ -250,6 +250,11 @@
           "Users"
         ],
         "description": "",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
@@ -271,6 +276,11 @@
           "Users"
         ],
         "description": "Grava os usuarios",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
@@ -306,6 +316,11 @@
           "Users"
         ],
         "description": "recuperar um usuario",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -674,17 +689,22 @@
           "Inscricoes"
         ],
         "description": "",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
             "name": "Inscricoes",
-            "description": "Retorna todas as categorias",
+            "description": "Retorna todas as Inscricoes",
             "schema": {}
           }
         ],
         "responses": {
           "200": {
-            "description": "Retorna todas as categorias"
+            "description": "Retorna todas as Inscricoes"
           }
         }
       }
@@ -695,6 +715,11 @@
           "Inscricoes"
         ],
         "description": "Inscreve usuario no evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
@@ -727,6 +752,11 @@
           "Inscricoes"
         ],
         "description": "Desinscreve usuario no evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
@@ -759,6 +789,11 @@
           "Inscricoes"
         ],
         "description": "recuperar inscritos de um determinado evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "eventoId",
@@ -781,6 +816,11 @@
           "Inscricoes"
         ],
         "description": "recuperar inscritos de um determinado evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "userId",
@@ -803,6 +843,11 @@
           "Inscricoes"
         ],
         "description": "Marca presenca para o usuario no evento",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
