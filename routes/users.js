@@ -6,7 +6,7 @@ const constants = require('./../helpers/Constants')
 
 /* USERS ROUTES */
 router.get('/', auth.ensureAuthenticated([constants.ADMINISTRATORS]), UserController.index);
-router.post('/store', auth.ensureAuthenticated([constants.ADMINISTRATORS]), UserController.store);
+router.post('/store', auth.ensureAuthenticated(), UserController.store);
 router.get('/:id', auth.ensureAuthenticated(), UserController.show);
 router.put('/update', auth.ensureAuthenticated(), UserController.update);
 router.delete('/:id/delete', auth.ensureAuthenticated(), UserController.destroy);

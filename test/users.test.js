@@ -20,7 +20,7 @@ autenticarUsuario = async (user) => {
 test('Atualizando usuario : Sem Endereço', async () => {
     var user = await criaUsuario()
     var userAuth = await autenticarUsuario(user)
-    return request(app).put('/users')
+    return request(app).put('/users/update')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "username": "enrique_atualizado",
@@ -36,7 +36,7 @@ test('Atualizando usuario : Sem Endereço', async () => {
 test('Atualizando usuario : Atualizando e Criando um Endereço', async () => {
     var user = await criaUsuario()
     var userAuth = await autenticarUsuario(user)
-    return request(app).put('/users')
+    return request(app).put('/users/update')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "username": "enrique_atualizado",
@@ -64,7 +64,7 @@ test('Atualizando usuario : Atualizando e Criando um Endereço', async () => {
 test('Atualizando usuario : Atualizando Endereço', async () => {
     var user = await criaUsuario()
     var userAuth = await autenticarUsuario(user)
-    await request(app).put('/users')
+    await request(app).put('/users/update')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "username": "enrique_atualizado",
@@ -83,7 +83,7 @@ test('Atualizando usuario : Atualizando Endereço', async () => {
             }
         })
 
-    return request(app).put('/users')
+    return request(app).put('/users/update')
         .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "username": "enrique_atualizado",
