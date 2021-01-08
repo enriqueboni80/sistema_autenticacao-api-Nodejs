@@ -9,7 +9,9 @@ const TABLE_NAME = 'eventos'
 module.exports = {
 
     getAll() {
-        return db(TABLE_NAME).select('*').leftJoin('enderecos', `${TABLE_NAME}.id`, 'enderecos.evento_id')
+        return db(TABLE_NAME).select(['*', `${TABLE_NAME}.id as id`, `${TABLE_NAME}.name as name`, 'eventos_categorias.name as categoria_name'])
+        .leftJoin('enderecos', `${TABLE_NAME}.id`, 'enderecos.evento_id')
+        .leftJoin('eventos_categorias', `${TABLE_NAME}.categoria`, 'eventos_categorias.id')
     },
 
     async store(body) {
