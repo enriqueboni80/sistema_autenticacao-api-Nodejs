@@ -27,7 +27,7 @@ module.exports = {
                         email: user.email,
                         grupos: user.grupos
                     }, process.env.JWT_KEY, {
-                        expiresIn: "9h"
+                        expiresIn: "8760h"
                     })
                     return res.status(200).send({
                         success: true,

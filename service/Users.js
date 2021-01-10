@@ -61,8 +61,8 @@ module.exports = {
             username: user.username,
             email: user.email,
             password: util.gerarHash(user.password),
-            activation_token: util.gerarActivationToken(),
-            created_at: util.getNow()
+            activation_token: util.gerarActivationToken()
+            //created_at: util.getNow()
         }
 
         return (await db(TABLE_NAME).insert(_user).returning('id')).toString();

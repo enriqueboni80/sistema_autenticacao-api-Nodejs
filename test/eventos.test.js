@@ -1,15 +1,35 @@
 const request = require('supertest')
 const app = require('../app')
 const serviceEventos = require('./../service/Eventos')
+const serviceUser = require('./../service/Users')
+const GruposUsuarios = require('./../service/GruposUsuarios')
+const constants = require('./../helpers/Constants')
+
+
+criaUsuario = async () => {
+    let result = await request(app).post('/auth/register').send({ 'username': 'ricao', 'email': `enriqueboni80+${Date.now()}@gmail.com`, 'password': 'Abc123.' })
+    let user = await serviceUser.getByEmail(result.body.email)
+    await serviceUser.validate(user.id)
+    await GruposUsuarios.setGroup(user.id, constants.ADMINISTRATORS)
+    return user
+}
+
+autenticarUsuario = async (user) => {
+    let resultAuth = await request(app).post('/auth/login').send({ 'email': user.email, 'password': 'Abc123.' })
+    return resultAuth.body.user
+}
 
 
 test('Registrando um evento', async () => {
+    var user = await criaUsuario()
+    var userAuth = await autenticarUsuario(user)
     return await request(app).post('/eventos/store')
+        .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "name": `Puc_teste`,
             "qtd_vagas": 20,
             "palestrante": "José da silva",
-            "url_imagem": "http://www.terra.com.br/",
+            "url_imagem": "",
             "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
             "categoria": 2,
@@ -44,7 +64,7 @@ test('Retornando todos os Eventos', async () => {
             "name": `Puc_teste 2`,
             "qtd_vagas": 20,
             "palestrante": "José da silva",
-            "url_imagem": "http://www.terra.com.br/",
+            "url_imagem": "",
             "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
             "preco": 50.00,
@@ -59,7 +79,7 @@ test('Retornando todos os Eventos', async () => {
             "name": `Puc_teste 3`,
             "qtd_vagas": 20,
             "palestrante": "José da silva",
-            "url_imagem": "http://www.terra.com.br/",
+            "url_imagem": "",
             "detalhes": "detalhes do evento",
             "descricao": "Evento de teste",
             "preco": 50.00,
@@ -89,12 +109,14 @@ test('Retornando todos os Eventos', async () => {
 });
 
 test('Atualizando Evento', async () => {
+    var user = await criaUsuario()
+    var userAuth = await autenticarUsuario(user)
 
     let evento = {
         "name": `Puc_teste 2`,
         "qtd_vagas": 20,
         "palestrante": "José da silva",
-        "url_imagem": "http://www.terra.com.br/",
+        "url_imagem": "",
         "detalhes": "detalhes do evento",
         "descricao": "Evento de teste",
         "preco": 50.00,
@@ -109,12 +131,13 @@ test('Atualizando Evento', async () => {
     let eventoId = await serviceEventos.store(evento)
 
     return await request(app).put('/eventos/update')
+        .set('Authorization', `Bearer ${userAuth.jwtToken}`)
         .send({
             "id": eventoId,
             "name": `Puc_teste 3 - Atualizado`,
             "qtd_vagas": 50,
             "palestrante": "José da silva - Atualizado",
-            "url_imagem": "http://www.terra.com.br/",
+            "url_imagem": "",
             "detalhes": "detalhes do evento - Atualizado",
             "descricao": "Evento de teste - Atualizado",
             "categoria": 5,
