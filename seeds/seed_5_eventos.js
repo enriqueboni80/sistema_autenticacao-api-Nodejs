@@ -159,11 +159,144 @@ var evento4 = {
   "tel_contato": '(11) 9999-9999'
 }
 
+var evento5 = {
+  "name": `Dev Talks PUC Minas`,
+  "qtd_vagas": 200,
+  "palestrante": "Rommel Vieira",
+  "url_imagem": "https://secure.meetupstatic.com/photos/event/2/a/b/d/600_478390941.jpeg",
+  "detalhes": "para o público em geral",
+  "descricao": `<p><span style="font-weight: 700;">O que fazemos</span><br></p>
+  <p>O Dev Talks PUC Minas é um evento voltado para todos os desenvolvedores de software nas mais diversas vertentes, 
+  mobile, front end, back end, arquitetura, devops, IoT, machine learning entre outros. Os encontros acontecem a cada 
+  dois meses e abrem espaço para palestras, mesas redondas, fishbows e outras dinâmicas com o objetivo de fortalecer o 
+  nosso ecossistema de Tecnologia da Informação.<br></p>`,
+  "categoria": 5,
+  "preco": 30.00,
+  "publicado": true,
+  "gratuito": false,
+  "privado": false,
+  "cancelado": false,
+  "data_inicio": "2021-03-12 08:00:00",
+  "data_fim": "2021-03-12 20:00:00",
+  "prazo_inscricao": "2021-03-11 23:00:00",
+  "tel_contato": '(11) 9999-9999'
+}
+
+var evento6 = {
+  "name": `XIII Semana de Pedagogia`,
+  "qtd_vagas": 400,
+  "palestrante": "Patricia Avelar",
+  "url_imagem": "https://www.pucminas.br/sala-imprensa/eventos/PublishingImages/Paginas/Forms/EventosPortalPUCMinas/xiii_semana_pedagogia.jpg",
+  "detalhes": "para o público em geral",
+  "descricao": `
+  <p>O Curso de Pedagogia realizará na quarta e quinta-feira, 20 e 21 de maio, o XIII Simpósio, com o tema&nbsp;
+  <em>Pedagogia e Pedagog@s em Tempos de Pandemia.</em>&nbsp;As inscrições estão abertas até o dia 20, pelo&nbsp;
+  <a href="https://www.sympla.com.br/xiii-simposio-de-pedagogia-da-puc-minas-pedagogia-e-pedagogs-em-tempos-de-pandemia__852937">sympla</a>, 
+  onde está disponível a programação completa. Haverá conferências, mesas-redondas e palestras com profissionais de diferentes instituições brasileiras 
+  e de Portugal. Haverá também atividades culturais elaboradas por professores e estudantes do Curso de Pedagogia. Haverá emissão de certificado.<br></p>
+  <p>O Simpósio será gratuito e realizado no<span>&nbsp;</span><a href="https://www.youtube.com/channel/UC9GQ74UopaKdQ-lKaz_1kqQ">canal</a><span>&nbsp;
+  </span>do Youtube do Curso de Pedagogia, mas só terão acesso ao Simpósio ao vivo as pessoas que se inscreverem e receberem confirmação por e-mail.</p>
+  `,
+  "categoria": 4,
+  "preco": 30.00,
+  "publicado": true,
+  "gratuito": false,
+  "privado": false,
+  "cancelado": false,
+  "data_inicio": "2021-03-15 08:00:00",
+  "data_fim": "2021-03-16 20:00:00",
+  "prazo_inscricao": "2021-03-15 23:00:00",
+  "tel_contato": '(11) 9999-9999'
+}
+
+var evento7 = {
+  "name": `Soluções de TI para LGPD`,
+  "qtd_vagas": 400,
+  "palestrante": "Rommel",
+  "url_imagem": "http://eventostech.com.br/wp-content/uploads/2019/11/solucoes-ti-lgpd19-eventostech-768x432.jpg",
+  "detalhes": "para o público em geral",
+  "descricao": `
+  <p>No contexto da LGPD, não existe uma única ferramenta que irá colocar a empresa em conformidade com a Lei. Na verdade, existem algumas soluções 
+  que, combinadas, podem ajudar na governança dos dados pessoais na organização. Venham conhecer algumas delas.<br></p>
+  <p>Atualmente é professor dos cursos de especialização MBA em Gestão de TI do Instituto Infnet e gerente de programa na Eletrobras, 
+  onde já atuou principalmente nos seguintes temas: Segurança da Informação, Planejamento Estratégico de TI, Controles Internos de TI 
+  para adequação à Lei Sarbanes-Oxley (SOX), Implantação de SAP ERP, Escritório de Projetos – PMO e Escritório de Processos – BPMO. 
+  O palestrante possui certificação PMP – Project Management Professional – é Gerente de projetos certificado pelo PMI e certificado MCSO – 
+  Modulo Certified Security Officer. Pós-Doutorado em Computação na UC – Universidade de Coimbra – Portugal, Doutorado em Engenharia de Sistemas e 
+  Computação na COPPE/UFRJ, Mestrado em Administração com ênfase em Sistemas de Apoio à Decisão, Pós-Graduação em Projetos e Gerência de Sistemas, 
+  Graduação em Análise de Sistemas.</p>
+  `,
+  "categoria": 5,
+  "preco": 30.00,
+  "publicado": true,
+  "gratuito": false,
+  "privado": false,
+  "cancelado": false,
+  "data_inicio": "2021-03-20 08:00:00",
+  "data_fim": "2021-03-20 18:00:00",
+  "prazo_inscricao": "2021-03-19 23:00:00",
+  "tel_contato": '(11) 9999-9999'
+}
+
+var evento8 = {
+  "name": `DevOps Days BH 2021`,
+  "qtd_vagas": 450,
+  "palestrante": "Renato Martinsl",
+  "url_imagem": "https://eventostech.com.br/wp-content/uploads/2019/08/devops-days-bh19-eventostech.jpg",
+  "detalhes": "para o público em geral",
+  "descricao": `
+  <p><strong>Sobre DevOps Days:</strong><br></p>
+  <div>DevOps Days&nbsp;é uma série mundial de conferências técnicas que abordam tópicos de desenvolvimento de software, operações de infraestrutura de TI e a interseção entre eles. Cada evento é executado por voluntários da comunidade local.</div>
+  <div>A maioria dos eventos do DevOps Days&nbsp;apresenta uma combinação de palestras, workshops e conteúdo de espaço aberto auto-organizado (Open Spaces). Os tópicos geralmente incluem automação, teste, segurança e cultura organizacional.</div>
+  <div><strong>História:</strong></div>
+  <div>O primeiro DevOps Days foi realizado em Ghent, Bélgica, em 2009. Desde então, os eventos DevOps Days&nbsp;se multiplicaram ao redor do mundo.</div>
+  <div><strong>Objetivos:</strong></div>
+  <div>Reunir os interessados em DevOps em todo Brasil.</div>
+  <div>Disseminar conhecimento técnico para a comunidade.</div>
+  <div>Ajudar no crescimento profissional de todos os participantes.</div>
+  <div>Tornar&nbsp;<strong>Belo Horizonte&nbsp;</strong>uma referência em eventos de Tecnologia no Brasil.</div>
+  <div>Despertar o interesse de quem ainda não conhece o tema DevOps.</div>
+  <div><strong>DevOpsDaysBH:</strong></div>
+  <div>Em 2018 foi realizado&nbsp;<strong>pela primeira vez em Belo Horizonte em Setembro de 2018 e foi o MAIOR evento DevOps do Brasil.</strong></div>
+  <div>Foram cerca de 300 pessoas neste dia tão especial!</div>
+  <div>Possuímos&nbsp;a maior comunidade de<strong>&nbsp;DevOps do Brasil (</strong>DevOpsBH<strong>) com mais de 2400 participantes !!!</strong></div>
+  <div><strong>Neste ano de 2019, estamos preparando um dia especial com muitas surpresas e bastante conhecimento para você.</strong></div>
+  <div><strong><span style="box-sizing: border-box; color: rgb(8, 82, 148);">&nbsp;</span></strong></div>
+  <div><strong><span style="box-sizing: border-box; color: rgb(8, 82, 148);">Venha embarcar em cultura, colaboração e ferramentas em um só lugar!!!</span></strong></div>
+  <div><strong><em><span style="box-sizing: border-box; color: rgb(8, 82, 148);">28/09/2019 – PUC Minas BH – Unidade Savassi (Praça da Liberdade).&nbsp;</span></em></strong></div>
+  <div><strong>Público Alvo:</strong></div>
+  <div><strong>&nbsp;</strong></div>
+  <div>Analistas de Sistemas</div>
+  <div>Analistas de Suporte</div>
+  <div>Analistas de Segurança da Informação</div>
+  <div>Desenvolvedores</div>
+  <div>Arquitetos de Software</div>
+  <div>Sys Admin’s</div>
+  <div>Analistas de infraestrutura</div>
+  <div>Engenheiros de Software</div>
+  <div>Estudantes de Tecnologia em geral</div>
+  <div>Gestores</div>
+  <div>CTOs</div>
+  <div>Apaixonados por Tecnologia</div>
+  <div>O EVENTO DEVOPS DAYS BH É UM EVENTO SEM FINS LUCRATIVOS</div>
+  `,
+  "categoria": 5,
+  "preco": 150.00,
+  "publicado": true,
+  "gratuito": false,
+  "privado": false,
+  "cancelado": false,
+  "data_inicio": "2021-04-30 08:00:00",
+  "data_fim": "2021-04-30 22:00:00",
+  "prazo_inscricao": "2021-04-29 23:00:00",
+  "tel_contato": '(11) 9999-9999'
+}
+
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('eventos').del()
     .then(function () {
       // Inserts seed entries
-      return knex('eventos').insert([evento1, evento2, evento3, evento4]);
+      return knex('eventos').insert([evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]);
     });
 };
