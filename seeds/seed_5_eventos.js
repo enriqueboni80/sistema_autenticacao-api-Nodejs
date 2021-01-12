@@ -62,7 +62,7 @@ var evento2 = {
   <figure style="height: 211px; padding-bottom: 211px;">
   <iframe src="https://www.youtube.com/embed/bbqBPABtrxE" data-proportion="true" data-align="center" data-size="374px,211px" data-file-name="bbqBPABtrxE" data-file-size="0" data-origin="100%,56.25%" data-rotate="" data-index="0" style="width: 374px; height: 211px;"></iframe>
   </figure></div>`,
-  "categoria": 5,
+  "categoria": 6,
   "preco": 50.00,
   "publicado": true,
   "gratuito": false,
@@ -103,7 +103,7 @@ var evento3 = {
   <iframe src="https://www.youtube.com/embed/6lz4TuA540U" data-proportion="true" data-align="center" data-size="383px,216px" data-file-name="6lz4TuA540U" data-file-size="0" data-origin="100%,56.25%" data-index="0" style="width: 383px; height: 216px;"></iframe>
   </figure>
   </div>`,
-  "categoria": 5,
+  "categoria": 3,
   "preco": 50.00,
   "publicado": true,
   "gratuito": false,
@@ -280,7 +280,7 @@ var evento8 = {
   <div>Apaixonados por Tecnologia</div>
   <div>O EVENTO DEVOPS DAYS BH É UM EVENTO SEM FINS LUCRATIVOS</div>
   `,
-  "categoria": 5,
+  "categoria": 6,
   "preco": 150.00,
   "publicado": true,
   "gratuito": false,
