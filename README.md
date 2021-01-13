@@ -1,4 +1,4 @@
-# sistema_autenticacao-api-Nodejs
+# sistema_eventos-api-Nodejs
 Backend / API do sistema de eventos desenvolvido para Puc Minas. 
 
 # versão homologada
