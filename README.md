@@ -23,10 +23,15 @@ npm run knex migrate:latest
 ```
 npm run knex seed:run
 ```
+
+##### documentação da API
+Acesse a documentacao da API (Swagger) através da url: http(s)://<domain>/api-docs
+
 ##### rodar teste Jest
 ```
 npm run secure-mode
 ```
+
 ##### USUARIO ADMIN (Painel Administrativo)
 user: admin@admin.com
 password: Admin123
